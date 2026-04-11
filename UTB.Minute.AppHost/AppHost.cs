@@ -1,7 +1,22 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-builder.AddProject<Projects.UTB_Minute_WebApi>("utb-minute-webapi");
+// Vytvoření PostgreSQL databáze
+var postgres = builder.AddPostgres("postgres")
+                      .WithContainerName("postgres-UTB.Minute")
+                      .WithDataVolume()
+                      .WithLifetime(ContainerLifetime.Persistent);
 
-builder.AddProject<Projects.UTB_Minute_DbManager>("utb-minute-dbmanager");
+var database = postgres.AddDatabase("CanteenDb");
+
+// DbManager s tlačítkem pro reset/seed
+builder.AddProject<Projects.UTB_Minute_DbManager>("dbmanager")
+       .WithReference(database)
+       .WithHttpCommand("/dev/seed", "Restart Database")
+       .WaitFor(database);
+
+// Hlavní WebApi
+builder.AddProject<Projects.UTB_Minute_WebApi>("webapi")
+       .WithReference(database)
+       .WaitFor(database);
 
 builder.Build().Run();

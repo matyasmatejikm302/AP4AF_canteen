@@ -1,45 +1,30 @@
+using UTB.Minute.Db;
+using UTB.Minute.Db.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
-
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.AddNpgsqlDbContext<AppDbContext>("CanteenDb");
 
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.MapPost("/dev/seed", async (AppDbContext db) =>
 {
-    app.MapOpenApi();
-}
+    await db.Database.EnsureDeletedAsync();
+    await db.Database.EnsureCreatedAsync();
 
-app.UseHttpsRedirection();
+    // Vytvoření základních dat
+    var meal1 = new Meal { Id = Guid.NewGuid(), Name = "Svíčková na smetaně", Description = "Hovězí maso, knedlík", Price = 145 };
+    var meal2 = new Meal { Id = Guid.NewGuid(), Name = "Smažený sýr", Description = "Hranolky, tatarka", Price = 130 };
+    db.Meals.AddRange(meal1, meal2);
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    var menuItem = new MenuItem { Id = Guid.NewGuid(), Date = DateOnly.FromDateTime(DateTime.Now), AvailablePortions = 10, MealId = meal1.Id };
+    db.MenuItems.Add(menuItem);
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+    await db.SaveChangesAsync();
+    return Results.NoContent();
+});
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

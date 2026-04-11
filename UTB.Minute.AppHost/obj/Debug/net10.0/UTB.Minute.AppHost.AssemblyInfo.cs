@@ -12,15 +12,13 @@ using System;
 using System.Reflection;
 
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("5bea5ec1-66a9-4244-a60f-85d68739769f")]
-[assembly: System.Reflection.AssemblyMetadata("dcpclipath", "C:\\Users\\Maty\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\13.1.0\\tools\\d" +
+[assembly: System.Reflection.AssemblyMetadata("dcpclipath", "C:\\Users\\Maty\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\13.2.2\\tools\\d" +
     "cp.exe")]
-[assembly: System.Reflection.AssemblyMetadata("dcpextensionpaths", "C:\\Users\\Maty\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\13.1.0\\tools\\e" +
+[assembly: System.Reflection.AssemblyMetadata("dcpextensionpaths", "C:\\Users\\Maty\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\13.2.2\\tools\\e" +
     "xt\\")]
-[assembly: System.Reflection.AssemblyMetadata("dcpbinpath", "C:\\Users\\Maty\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\13.1.0\\tools\\e" +
-    "xt\\bin\\")]
 [assembly: System.Reflection.AssemblyMetadata("apphostprojectpath", "C:\\Users\\Maty\\source\\repos\\UTB.Minute.AppHost")]
 [assembly: System.Reflection.AssemblyMetadata("apphostprojectname", "UTB.Minute.AppHost.csproj")]
-[assembly: System.Reflection.AssemblyMetadata("aspiredashboardpath", "C:\\Users\\Maty\\.nuget\\packages\\aspire.dashboard.sdk.win-x64\\13.1.0\\tools\\Aspire.Da" +
+[assembly: System.Reflection.AssemblyMetadata("aspiredashboardpath", "C:\\Users\\Maty\\.nuget\\packages\\aspire.dashboard.sdk.win-x64\\13.2.2\\tools\\Aspire.Da" +
     "shboard.exe")]
 [assembly: System.Reflection.AssemblyMetadataAttribute("apphostprojectbaseintermediateoutputpath", "C:\\Users\\Maty\\source\\repos\\UTB.Minute.AppHost\\obj\\")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("UTB.Minute.AppHost")]

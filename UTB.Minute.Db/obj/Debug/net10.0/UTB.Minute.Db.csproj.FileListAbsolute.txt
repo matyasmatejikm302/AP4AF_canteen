@@ -1,0 +1,12 @@
+C:\Users\Maty\source\repos\UTB.Minute.Db\bin\Debug\net10.0\UTB.Minute.Db.deps.json
+C:\Users\Maty\source\repos\UTB.Minute.Db\bin\Debug\net10.0\UTB.Minute.Db.dll
+C:\Users\Maty\source\repos\UTB.Minute.Db\bin\Debug\net10.0\UTB.Minute.Db.pdb
+C:\Users\Maty\source\repos\UTB.Minute.Db\obj\Debug\net10.0\UTB.Minute.Db.csproj.AssemblyReference.cache
+C:\Users\Maty\source\repos\UTB.Minute.Db\obj\Debug\net10.0\UTB.Minute.Db.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Maty\source\repos\UTB.Minute.Db\obj\Debug\net10.0\UTB.Minute.Db.AssemblyInfoInputs.cache
+C:\Users\Maty\source\repos\UTB.Minute.Db\obj\Debug\net10.0\UTB.Minute.Db.AssemblyInfo.cs
+C:\Users\Maty\source\repos\UTB.Minute.Db\obj\Debug\net10.0\UTB.Minute.Db.csproj.CoreCompileInputs.cache
+C:\Users\Maty\source\repos\UTB.Minute.Db\obj\Debug\net10.0\UTB.Minute.Db.dll
+C:\Users\Maty\source\repos\UTB.Minute.Db\obj\Debug\net10.0\refint\UTB.Minute.Db.dll
+C:\Users\Maty\source\repos\UTB.Minute.Db\obj\Debug\net10.0\UTB.Minute.Db.pdb
+C:\Users\Maty\source\repos\UTB.Minute.Db\obj\Debug\net10.0\ref\UTB.Minute.Db.dll

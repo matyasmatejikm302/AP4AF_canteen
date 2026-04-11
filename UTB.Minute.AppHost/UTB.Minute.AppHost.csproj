@@ -8,6 +8,11 @@
     <UserSecretsId>5bea5ec1-66a9-4244-a60f-85d68739769f</UserSecretsId>
   </PropertyGroup>
 
+	<ItemGroup>
+		<PackageReference Include="Aspire.Hosting.AppHost" Version="13.2.2" />
+		<PackageReference Include="Aspire.Hosting.PostgreSQL" Version="13.2.2" />
+	</ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\UTB.Minute.DbManager\UTB.Minute.DbManager.csproj" />
     <ProjectReference Include="..\UTB.Minute.WebApi\UTB.Minute.WebApi.csproj" />

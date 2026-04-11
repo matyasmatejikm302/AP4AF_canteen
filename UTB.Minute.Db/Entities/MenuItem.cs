@@ -12,5 +12,5 @@ public class MenuItem
     public Meal Meal { get; set; } = null!;
 
     [Timestamp]
-    public byte[] RowVersion { get; set; } = null!;
+    public byte[]? RowVersion { get; set; }
 }
