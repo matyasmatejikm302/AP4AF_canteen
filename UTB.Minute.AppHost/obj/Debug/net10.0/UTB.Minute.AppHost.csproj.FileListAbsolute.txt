@@ -96,6 +96,7 @@ C:\Users\Maty\source\repos\UTB.Minute.AppHost\obj\Debug\net10.0\UTB.Minute.AppHo
 C:\Users\Maty\source\repos\UTB.Minute.AppHost\obj\Debug\net10.0\UTB.Minute.AppHost.csproj.CoreCompileInputs.cache
 C:\Users\Maty\source\repos\UTB.Minute.AppHost\obj\Debug\net10.0\Aspire\references\UTB_Minute_DbManager.ProjectMetadata.g.cs
 C:\Users\Maty\source\repos\UTB.Minute.AppHost\obj\Debug\net10.0\Aspire\references\UTB_Minute_WebApi.ProjectMetadata.g.cs
+C:\Users\Maty\source\repos\UTB.Minute.AppHost\obj\Debug\net10.0\Aspire\references\UTB_Minute_Web.ProjectMetadata.g.cs
 C:\Users\Maty\source\repos\UTB.Minute.AppHost\obj\Debug\net10.0\Aspire\references\_AppHost.ProjectMetadata.g.cs
 C:\Users\Maty\source\repos\UTB.Minute.AppHost\obj\Debug\net10.0\UTB.Minu.064E1F18.Up2Date
 C:\Users\Maty\source\repos\UTB.Minute.AppHost\obj\Debug\net10.0\UTB.Minute.AppHost.dll

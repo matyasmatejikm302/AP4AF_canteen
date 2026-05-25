@@ -6,7 +6,20 @@ public record MealDto(Guid Id, string Name, string Description, decimal Price, b
 public record CreateMealDto(string Name, string Description, decimal Price);
 public record UpdateMealDto(string Name, string Description, decimal Price);
 
-public record MenuItemDto(Guid Id, DateOnly Date, int AvailablePortions, MealDto Meal);
+public record MenuItemDto
+{
+    public Guid Id { get; set; }
+    public DateOnly Date { get; set; }
+    public int AvailablePortions { get; set; }
+    public MealDto Meal { get; set; } = null!;
+
+    public MenuItemDto() { }
+    public MenuItemDto(Guid id, DateOnly date, int portions, MealDto meal)
+    {
+        Id = id; Date = date; AvailablePortions = portions; Meal = meal;
+    }
+}
+
 public record CreateMenuItemDto(DateOnly Date, int AvailablePortions, Guid MealId);
 public record UpdateMenuItemDto(DateOnly Date, int AvailablePortions, Guid MealId);
 

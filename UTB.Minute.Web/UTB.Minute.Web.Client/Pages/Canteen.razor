@@ -1,0 +1,113 @@
+﻿@page "/"
+@page "/canteen"
+@using UTB.Minute.Contracts
+@using System.Text.Json
+@inject HttpClient Http
+@inject IJSRuntime JS
+@implements IDisposable
+@rendermode InteractiveWebAssembly
+
+<PageTitle>Jídelna UTB</PageTitle>
+
+<div class="container py-4">
+    <div class="d-flex align-items-center mb-4">
+        <h1 class="display-5 fw-bold text-primary">🍴 Dnešní nabídka</h1>
+        <div class="ms-auto">
+            <span class="badge bg-success p-2 shadow-sm">Real-time update: Aktivní</span>
+        </div>
+    </div>
+
+    @if (menuItems == null)
+    {
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="mt-2 text-muted">Načítám menu z kuchyně...</p>
+        </div>
+    }
+    else if (!menuItems.Any())
+    {
+        <div class="alert alert-info shadow-sm">
+            Dnes v menu zatím nic není. V Dashboardu klikněte na <strong>Restart Database</strong>.
+        </div>
+    }
+    else
+    {
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach (var item in menuItems)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 bg-light">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold text-dark">@item.Meal.Name</h5>
+                            <p class="card-text text-secondary small">@item.Meal.Description</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 pb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="h4 text-primary mb-0">@item.Meal.Price Kč</span>
+                                <span class="badge @(item.AvailablePortions > 0 ? "bg-info" : "bg-danger")">
+                                    Skladem: @item.AvailablePortions ks
+                                </span>
+                            </div>
+                            <button class="btn @(item.AvailablePortions > 0 ? "btn-primary" : "btn-outline-secondary") w-100 py-2 fw-bold shadow-sm"
+                                    @onclick="() => OrderMeal(item)"
+                                    disabled="@(item.AvailablePortions <= 0)">
+                                @(item.AvailablePortions > 0 ? "OBJEDNAT" : "VYPRODÁNO")
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    private List<MenuItemDto>? menuItems;
+    private DotNetObjectReference<Canteen>? objRef;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            // Voláme relativní cestu, kterou odchytí Proxy na serveru
+            menuItems = (await Http.GetFromJsonAsync<MenuItemDto[]>("/menu"))?.ToList();
+        }
+        catch
+        {
+            menuItems = new();
+        }
+
+        objRef = DotNetObjectReference.Create(this);
+        _ = Task.Run(async () =>
+        {
+            await Task.Delay(1000);
+            // SSE voláme relativně přes naši Proxy
+            await JS.InvokeVoidAsync("setupSse", objRef, "/orders/sse");
+        });
+    }
+
+    private async Task OrderMeal(MenuItemDto item)
+    {
+        var request = new CreateOrderDto(item.Id, "Student-Matyas");
+        await Http.PostAsJsonAsync("/orders", request);
+    }
+
+    [JSInvokable]
+    public void OnOrderUpdate(string json)
+    {
+        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        var update = JsonSerializer.Deserialize<OrderDto>(json, options);
+        
+        if (update != null && menuItems != null)
+        {
+            var menuItem = menuItems.FirstOrDefault(m => m.Id == update.MenuItemId);
+            if (menuItem != null && menuItem.AvailablePortions > 0)
+            {
+                menuItem.AvailablePortions--;
+                StateHasChanged();
+            }
+        }
+    }
+
+    public void Dispose() => objRef?.Dispose();
+}

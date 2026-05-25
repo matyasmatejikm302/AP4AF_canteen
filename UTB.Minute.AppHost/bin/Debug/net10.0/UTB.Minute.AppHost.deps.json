@@ -8,14 +8,14 @@
     ".NETCoreApp,Version=v10.0": {
       "UTB.Minute.AppHost/1.0.0": {
         "dependencies": {
-          "Aspire.Hosting.AppHost": "13.2.2",
-          "Aspire.Hosting.PostgreSQL": "13.2.2"
+          "Aspire.Hosting.AppHost": "13.3.5",
+          "Aspire.Hosting.PostgreSQL": "13.3.5"
         },
         "runtime": {
           "UTB.Minute.AppHost.dll": {}
         }
       },
-      "Aspire.Hosting/13.2.2": {
+      "Aspire.Hosting/13.3.5": {
         "dependencies": {
           "AspNetCore.HealthChecks.Uris": "9.0.0",
           "Google.Protobuf": "3.33.5",
@@ -33,8 +33,8 @@
         },
         "runtime": {
           "lib/net8.0/Aspire.Hosting.dll": {
-            "assemblyVersion": "13.2.2.0",
-            "fileVersion": "13.200.226.20702"
+            "assemblyVersion": "13.3.5.0",
+            "fileVersion": "13.300.526.27006"
           }
         },
         "resources": {
@@ -79,10 +79,10 @@
           }
         }
       },
-      "Aspire.Hosting.AppHost/13.2.2": {
+      "Aspire.Hosting.AppHost/13.3.5": {
         "dependencies": {
           "AspNetCore.HealthChecks.Uris": "9.0.0",
-          "Aspire.Hosting": "13.2.2",
+          "Aspire.Hosting": "13.3.5",
           "Google.Protobuf": "3.33.5",
           "Grpc.AspNetCore": "2.76.0",
           "Grpc.Net.ClientFactory": "2.76.0",
@@ -98,16 +98,16 @@
         },
         "runtime": {
           "lib/net10.0/Aspire.Hosting.AppHost.dll": {
-            "assemblyVersion": "13.2.2.0",
-            "fileVersion": "13.200.226.20702"
+            "assemblyVersion": "13.3.5.0",
+            "fileVersion": "13.300.526.27006"
           }
         }
       },
-      "Aspire.Hosting.PostgreSQL/13.2.2": {
+      "Aspire.Hosting.PostgreSQL/13.3.5": {
         "dependencies": {
           "AspNetCore.HealthChecks.NpgSql": "9.0.0",
           "AspNetCore.HealthChecks.Uris": "9.0.0",
-          "Aspire.Hosting": "13.2.2",
+          "Aspire.Hosting": "13.3.5",
           "Google.Protobuf": "3.33.5",
           "Grpc.AspNetCore": "2.76.0",
           "Grpc.Net.ClientFactory": "2.76.0",
@@ -123,8 +123,8 @@
         },
         "runtime": {
           "lib/net8.0/Aspire.Hosting.PostgreSQL.dll": {
-            "assemblyVersion": "13.2.2.0",
-            "fileVersion": "13.200.226.20702"
+            "assemblyVersion": "13.3.5.0",
+            "fileVersion": "13.300.526.27006"
           }
         }
       },
@@ -567,26 +567,26 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Aspire.Hosting/13.2.2": {
+    "Aspire.Hosting/13.3.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-jocP+/rGMBsQqiol5b6LRvWIRYng+o80UikCUuVXhMWIOsrOAL/T6RPye70k43IltcWo3wl3xVGSiSfR1rORGQ==",
-      "path": "aspire.hosting/13.2.2",
-      "hashPath": "aspire.hosting.13.2.2.nupkg.sha512"
+      "sha512": "sha512-LHkPq30RgIxyN3rwPdqPAB1w5VwmfqjLoq+xX+Bac/9JOOwRROxHr7bjve28PnqBKmSX/z4PZlKlakKLOMGJXw==",
+      "path": "aspire.hosting/13.3.5",
+      "hashPath": "aspire.hosting.13.3.5.nupkg.sha512"
     },
-    "Aspire.Hosting.AppHost/13.2.2": {
+    "Aspire.Hosting.AppHost/13.3.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-pRq49/xiOe4mdEQivX/3GNahFaMzmukDMslAL/EpRLkO1jUP5bvl+Bl70+gCTJocIN2owByWmh/SFOuf1BFMGg==",
-      "path": "aspire.hosting.apphost/13.2.2",
-      "hashPath": "aspire.hosting.apphost.13.2.2.nupkg.sha512"
+      "sha512": "sha512-DgHjSmad4XDpAhxs1mg2+RSMotQACp7goZ7FjQPwl9RnsaH8o8+yEMSepl0SQoRKDyeU7XLrCRhXj60xfSVSYQ==",
+      "path": "aspire.hosting.apphost/13.3.5",
+      "hashPath": "aspire.hosting.apphost.13.3.5.nupkg.sha512"
     },
-    "Aspire.Hosting.PostgreSQL/13.2.2": {
+    "Aspire.Hosting.PostgreSQL/13.3.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-sXldHq68mdQurzg7nmMvZNcjTRBjMsAch2x4ppX+9DAQ1EvjkRpv6ZgImkW2nY8YHSK5HxKXXkYCYJZdDhDKYA==",
-      "path": "aspire.hosting.postgresql/13.2.2",
-      "hashPath": "aspire.hosting.postgresql.13.2.2.nupkg.sha512"
+      "sha512": "sha512-z9ikuYmeBhcUzA1lVeRfDdxdK2QcGI3golOvQ0EwkCyTpnD4yjTezuO5olY0qe4Wf/esxMPFHP8A1J5TEuNz1w==",
+      "path": "aspire.hosting.postgresql/13.3.5",
+      "hashPath": "aspire.hosting.postgresql.13.3.5.nupkg.sha512"
     },
     "AspNetCore.HealthChecks.NpgSql/9.0.0": {
       "type": "package",

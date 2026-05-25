@@ -270,5 +270,21 @@
         "StatusCode": 404
       }
     ]
+  },
+  {
+    "ContainingType": "UTB.Minute.WebApi.Endpoints.OrderEndpoints",
+    "Method": "SubscribeToUpdates",
+    "RelativePath": "orders/sse",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
   }
 ]
