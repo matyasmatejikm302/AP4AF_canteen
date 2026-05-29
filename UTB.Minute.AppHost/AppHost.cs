@@ -10,7 +10,7 @@ var postgres = builder.AddPostgres("postgres")
 
 var database = postgres.AddDatabase("CanteenDb");
 
-// 2. --- NOVINKA: Spuštění Keycloaku ---
+// 2. Spuštění Keycloaku
 var keycloak = builder.AddKeycloak("keycloak")
                       .WithDataVolume()
                       .WithLifetime(ContainerLifetime.Persistent);
@@ -21,16 +21,18 @@ builder.AddProject<UTB_Minute_DbManager>("dbmanager")
        .WithHttpCommand("/dev/seed", "Restart Database")
        .WaitFor(database);
 
-// 4. WebApi - předáme referenci na Keycloak
-var webapi = builder.AddProject<UTB_Minute_WebApi>("webapi")
+// 4. WebApi - předáme referenci na Keycloak a počkáme, až bude zdravý
+var webapi = builder.AddProject<Projects.UTB_Minute_WebApi>("webapi")
                     .WithReference(database)
-                    .WithReference(keycloak) // <--- PŘIDÁNO
-                    .WaitFor(database);
+                    .WithReference(keycloak)
+                    .WaitFor(database)
+                    .WaitFor(keycloak); // <--- ČEKÁME NA KEYCLOAK
 
-// 5. Web Frontend - předáme referenci na Keycloak
-builder.AddProject<UTB_Minute_Web>("web")
+// 5. Web Frontend - předáme referenci na WebApi, Keycloak a počkáme na oba
+builder.AddProject<Projects.UTB_Minute_Web>("web")
        .WithReference(webapi)
-       .WithReference(keycloak) // <--- PŘIDÁNO
-       .WaitFor(webapi);
+       .WithReference(keycloak)
+       .WaitFor(webapi)
+       .WaitFor(keycloak); // <--- ČEKÁME NA KEYCLOAK
 
 builder.Build().Run();

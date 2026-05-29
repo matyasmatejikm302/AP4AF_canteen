@@ -204,8 +204,6 @@ C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\System.Xml.exkkf0ue13.wasm
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\UTB.Minute.Contracts.572at85uik.pdb
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\UTB.Minute.Contracts.8fqj8ic54q.wasm
-C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\UTB.Minute.Web.Client.b9uf3ob1pm.wasm
-C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\UTB.Minute.Web.Client.cl1nhpb383.pdb
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\WindowsBase.1bna4dlnz5.wasm
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\blazor.webassembly.js
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\dotnet.js
@@ -351,7 +349,6 @@ C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\Microsoft.Extensions.Diagnostics.Abstractions.qmgvqfr4qy.wasm.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\System.Globalization.Extensions.i4rrqkn8ac.wasm.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\Microsoft.Win32.Registry.2ywbsi2vy8.wasm.gz
-C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\UTB.Minute.Web.Client.cl1nhpb383.pdb.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\System.0b02oc3xxl.wasm.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\Microsoft.Extensions.DependencyInjection.rl4fxgttc4.wasm.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\Microsoft.Extensions.Configuration.7uco57e6bd.wasm.gz
@@ -411,7 +408,6 @@ C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\System.Net.Requests.qqzugy2ce8.wasm.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\System.Runtime.InteropServices.RuntimeInformation.e3cbqagcoy.wasm.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\System.Reflection.c3iqc3clxz.wasm.gz
-C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\UTB.Minute.Web.Client.b9uf3ob1pm.wasm.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\System.Net.Primitives.9a0d5yreav.wasm.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\Microsoft.Extensions.Caching.Abstractions.izbpl370jp.wasm.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\System.Xml.Serialization.h2wjs2ywtx.wasm.gz
@@ -1109,9 +1105,6 @@ C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\compressed\ppjgg6ybmp-{0}-lfu7j35m59-lfu7j35m59.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\compressed\faxjr96axd-{0}-8fqj8ic54q-8fqj8ic54q.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\compressed\rzlj3ojn3f-{0}-572at85uik-572at85uik.gz
-C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\compressed\ubz4vqd2x7-{0}-b9uf3ob1pm-b9uf3ob1pm.gz
-C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\compressed\l0ghu22c1m-{0}-cl1nhpb383-cl1nhpb383.gz
-C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\compressed\3ujxxd3vbx-{0}-qo934envos-qo934envos.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\staticwebassets.build.json
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\staticwebassets.build.json.cache
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\staticwebassets.development.json
@@ -1123,3 +1116,10 @@ C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\refint\UTB.Minute.Web.Client.dll
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\UTB.Minute.Web.Client.pdb
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\ref\UTB.Minute.Web.Client.dll
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\UTB.Minute.Web.Client.5mle1ijfmx.pdb
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\UTB.Minute.Web.Client.opk7p8whvi.wasm
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\UTB.Minute.Web.Client.5mle1ijfmx.pdb.gz
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\UTB.Minute.Web.Client.opk7p8whvi.wasm.gz
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\compressed\ubz4vqd2x7-{0}-opk7p8whvi-opk7p8whvi.gz
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\compressed\l0ghu22c1m-{0}-5mle1ijfmx-5mle1ijfmx.gz
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\compressed\3ujxxd3vbx-{0}-frug0lzfbi-frug0lzfbi.gz

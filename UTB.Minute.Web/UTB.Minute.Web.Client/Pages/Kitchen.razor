@@ -1,101 +1,159 @@
 ﻿@page "/kitchen"
 @using UTB.Minute.Contracts
-@using Microsoft.AspNetCore.Authorization
+@using System.Text.Json
 @using Microsoft.AspNetCore.Components.Authorization
 @inject HttpClient Http
-@inject NavigationManager Nav
-@attribute [Authorize(Roles = "cook")]
+@inject IJSRuntime JS
+@implements IDisposable
 @rendermode InteractiveWebAssembly
 
-<PageTitle>Kuchyně - Příprava jídel</PageTitle>
+<PageTitle>Kuchyně UTB - Příprava jídla</PageTitle>
 
-<div class="container mt-4">
-    <h1 class="mb-4 text-danger">👨‍🍳 Přehled pro kuchyni</h1>
+@* Zabezpečení stránky: Pouze uživatelé s rolí "Cook" mají přístup *@
+<AuthorizeView Roles="Cook">
+    <Authorized>
+        <div class="container py-4">
+            <div class="d-flex align-items-center mb-4 border-bottom pb-3">
+                <h1 class="display-5 fw-bold text-danger">👨‍🍳 Kuchyňský Displej (KDS)</h1>
+                <div class="ms-auto">
+                    <span class="badge bg-danger p-2 shadow-sm">Režim: Kuchař (@context.User.Identity?.Name)</span>
+                </div>
+            </div>
 
-    <AuthorizeView Roles="cook">
-        <Authorized>
-            @if (orders == null)
+            @if (activeOrders == null)
             {
-                <div class="spinner-border" role="status"></div>
+                <div class="text-center py-5">
+                    <div class="spinner-border text-danger" role="status"></div>
+                    <p class="mt-2 text-muted">Načítám objednávky z databáze...</p>
+                </div>
+            }
+            else if (!activeOrders.Any())
+            {
+                <div class="alert alert-success shadow-sm text-center py-4">
+                    <h3>🎉 Všechna jídla jsou vydána!</h3>
+                    <p class="mb-0 text-muted">Žádné čekající objednávky v pořadí.</p>
+                </div>
             }
             else
             {
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>ID Objednávky</th>
-                                <th>Student</th>
-                                <th>Stav</th>
-                                <th>Akce</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var order in orders.Where(o => o.State != OrderStateDto.Completed))
-                            {
-                                <tr>
-                                    <td>@order.Id.ToString().Substring(0, 8)...</td>
-                                    <td>@order.StudentId</td>
-                                    <td>
-                                        <span class="badge @GetBadgeClass(order.State)">@order.State</span>
-                                    </td>
-                                    <td>
-                                        @if (order.State == OrderStateDto.Preparing)
-                                        {
-                                            <button class="btn btn-warning btn-sm" @onclick="() => UpdateState(order.Id, OrderStateDto.Ready)">
-                                                HOTOVO - K ODBĚRU
-                                            </button>
-                                        }
-                                        @if (order.State == OrderStateDto.Ready)
-                                        {
-                                            <button class="btn btn-success btn-sm" @onclick="() => UpdateState(order.Id, OrderStateDto.Completed)">
-                                                VYDÁNO
-                                            </button>
-                                        }
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    @foreach (var order in activeOrders)
+                    {
+                        <div class="col">
+                            <div class="card h-100 shadow border-0 @GetCardBorderClass(order.State)">
+                                <div class="card-header d-flex justify-content-between align-items-center bg-transparent border-0 pt-3">
+                                    <span class="fw-bold text-muted small">ID: #@order.Id.ToString().Substring(0, 8)</span>
+                                    <span class="badge @GetBadgeClass(order.State)">@order.State.ToString().ToUpper()</span>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold">Strávník: @order.StudentId</h5>
+                                    <p class="card-text text-secondary">
+                                        Čeká na přípravu.
+                                    </p>
+                                </div>
+                                <div class="card-footer bg-white border-0 pb-3">
+                                    @if (order.State == OrderStateDto.Preparing)
+                                    {
+                                        <button class="btn btn-warning w-100 py-2 fw-bold text-dark" @onclick="() => UpdateState(order.Id, OrderStateDto.Ready)">
+                                            HOTOVO (K ODBĚRU)
+                                        </button>
+                                    }
+                                    @if (order.State == OrderStateDto.Ready)
+                                    {
+                                        <button class="btn btn-success w-100 py-2 fw-bold" @onclick="() => UpdateState(order.Id, OrderStateDto.Completed)">
+                                            VYDAT STRÁVNÍKOVI
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
             }
-        </Authorized>
-        <NotAuthorized>
-            <div class="alert alert-warning">
-                Pro přístup je potřeba přihlášení jako kuchař.
-                <div class="mt-2">
-                    <button class="btn btn-primary btn-sm" @onclick="NavigateToLogin">Přihlásit přes Keycloak</button>
-                </div>
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <div class="container py-5 text-center">
+            <div class="alert alert-danger d-inline-block p-4 shadow">
+                <h3>🚫 Přístup odepřen</h3>
+                <p class="mb-0">Tato stránka je přístupná pouze pro kuchaře s rolí <strong>Cook</strong>.</p>
+                <a href="/" class="btn btn-primary mt-3">Zpět do Jídelny</a>
             </div>
-        </NotAuthorized>
-    </AuthorizeView>
-
-</div>
+        </div>
+    </NotAuthorized>
+</AuthorizeView>
 
 @code {
-    private OrderDto[]? orders;
+    private List<OrderDto>? activeOrders;
+    private DotNetObjectReference<Kitchen>? objRef;
 
     protected override async Task OnInitializedAsync()
     {
-        await RefreshOrders();
+        // 1. Načteme všechny rozpracované objednávky (ty, které ještě nejsou kompletně vydané)
+        try
+        {
+            var all = await Http.GetFromJsonAsync<OrderDto[]>("/orders");
+            activeOrders = all?.Where(o => o.State != OrderStateDto.Completed && o.State != OrderStateDto.Cancelled).ToList();
+        }
+        catch
+        {
+            activeOrders = new();
+        }
+
+        // 2. Napojíme se na SSE, aby kuchař viděl nové objednávky hned, jak je student odešle
+        objRef = DotNetObjectReference.Create(this);
+        _ = Task.Run(async () =>
+        {
+            await Task.Delay(1000);
+            await JS.InvokeVoidAsync("setupSse", objRef, "/orders/sse");
+        });
     }
 
-@code {
-    private void NavigateToLogin()
+    private async Task UpdateState(Guid orderId, OrderStateDto newState)
     {
-        Nav.NavigateTo("/login?returnUrl=/kitchen", true);
+        // Odešleme PATCH požadavek na změnu stavu
+        var response = await Http.PatchAsJsonAsync($"/orders/{orderId}/state", new ChangeOrderStateDto(newState));
+        if (response.IsSuccessStatusCode)
+        {
+            // Pokud kuchař jídlo úplně vydal (Completed), odstraníme ho z displeje
+            if (newState == OrderStateDto.Completed && activeOrders != null)
+            {
+                var order = activeOrders.FirstOrDefault(o => o.Id == orderId);
+                if (order != null)
+                {
+                    activeOrders.Remove(order);
+                    StateHasChanged();
+                }
+            }
+        }
     }
-}
 
-    private async Task RefreshOrders()
+    [JSInvokable]
+    public void OnOrderUpdate(string json)
     {
-        orders = await Http.GetFromJsonAsync<OrderDto[]>("/orders");
-    }
-
-    private async Task UpdateState(Guid id, OrderStateDto newState)
-    {
-        await Http.PatchAsJsonAsync($"/orders/{id}/state", new ChangeOrderStateDto(newState));
-        await RefreshOrders();
+        var update = JsonSerializer.Deserialize<OrderDto>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        if (update != null && activeOrders != null)
+        {
+            var existing = activeOrders.FirstOrDefault(o => o.Id == update.Id);
+            if (existing != null)
+            {
+                // Pokud se změnil stav (např. z Preparing na Ready), aktualizujeme kartu
+                if (update.State == OrderStateDto.Completed || update.State == OrderStateDto.Cancelled)
+                {
+                    activeOrders.Remove(existing);
+                }
+                else
+                {
+                    existing.State = update.State;
+                }
+            }
+            else if (update.State == OrderStateDto.Preparing)
+            {
+                // Pokud student vytvořil NOVOU objednávku, kuchaři okamžitě "přistane" na displeji!
+                activeOrders.Add(update);
+            }
+            StateHasChanged();
+        }
     }
 
     private string GetBadgeClass(OrderStateDto state) => state switch
@@ -105,4 +163,13 @@
         OrderStateDto.Completed => "bg-success",
         _ => "bg-light text-dark"
     };
+
+    private string GetCardBorderClass(OrderStateDto state) => state switch
+    {
+        OrderStateDto.Preparing => "border-start border-4 border-secondary",
+        OrderStateDto.Ready => "border-start border-4 border-warning",
+        _ => ""
+    };
+
+    public void Dispose() => objRef?.Dispose();
 }

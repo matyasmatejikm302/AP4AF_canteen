@@ -3,25 +3,25 @@
         <a class="navbar-brand" href="">UTB Jídelna</a>
     </div>
 </div>
+
 <div class="nav-scrollable">
     <nav class="flex-column">
+        <!-- Odkaz do Jídelny vidí všichni -->
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="/canteen" Match="NavLinkMatch.All">Jídelna</NavLink>
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Jídelna
+            </NavLink>
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="/kitchen">Kuchyně</NavLink>
-        </div>
-        <div class="nav-item px-3 mt-3">
-            <AuthorizeView>
-                <Authorized>
-                    <form method="post" action="/logout">
-                        <button type="submit" class="btn btn-link nav-link">Odhlásit</button>
-                    </form>
-                </Authorized>
-                <NotAuthorized>
-                    <a class="nav-link" href="/login">Přihlásit</a>
-                </NotAuthorized>
-            </AuthorizeView>
-        </div>
+
+        <!-- Odkaz do Kuchyně vidí pouze přihlášený kuchař s rolí Cook -->
+        <AuthorizeView Roles="Cook">
+            <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="kitchen">
+                        <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> 👨‍🍳 KUCHYNĚ (Displej)
+                    </NavLink>
+                </div>
+            </Authorized>
+        </AuthorizeView>
     </nav>
 </div>

@@ -6,27 +6,31 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.AspNetCore.Components.Authorization;
 using UTB.Minute.Contracts;
-using UTB.Minute.Web.Client.Pages; // Nezbytné pro odkaz na stránku Canteen
+using UTB.Minute.Web.Client.Pages;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. Nastavení standardních Aspire a Blazor služeb
+// --- OPRAVA CHYBY HTTP 431 ---
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.Limits.MaxRequestHeadersTotalSize = 1024 * 64;
+});
+
 builder.AddServiceDefaults();
 builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
+builder.Services.AddHttpForwarder();
+
 // --- 2. DYNAMICKÉ NASTAVENÍ PRO REALM UTB ---
-// PŘEDNOSTNĚ voláme "https", pro které máme nastavený SSL validator níže
 var keycloakBaseUrl = builder.Configuration["services:keycloak:https:0"]
                    ?? builder.Configuration["services:keycloak:http:0"]
                    ?? "http://keycloak";
 
 var keycloakRealm = "UTB";
 var keycloakClientId = "canteen-web";
-
-// TVŮJ CLIENT SECRET Z KEYCLOAKU:
 var keycloakClientSecret = "28gmH9XPxhhBRMRyIcthhq6f7kcCieA1";
-
 var keycloakAuthority = $"{keycloakBaseUrl}/realms/{keycloakRealm}";
 
 // --- 3. OpenID Connect (Keycloak) konfigurace ---
@@ -51,26 +55,56 @@ builder.Services.AddAuthentication(options =>
             options.Scope.Add("email");
             options.Scope.Add("roles");
             options.SaveTokens = true;
-            options.RequireHttpsMetadata = false; // Pouze pro lokální vývoj
-
-            // Deaktivace PAR protokolu (řeší chyby s přihlášením klienta na pozadí)
+            options.RequireHttpsMetadata = false;
             options.PushedAuthorizationBehavior = PushedAuthorizationBehavior.Disable;
 
-            // Ignorování chyb neplatných SSL certifikátů v Dockeru
             options.BackchannelHttpHandler = new HttpClientHandler
             {
                 ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
             };
 
             options.TokenValidationParameters.NameClaimType = "preferred_username";
+
+            // Mapování rolí z Keycloaku na C# Claims
+            options.Events = new OpenIdConnectEvents
+            {
+                OnTokenValidated = context =>
+                {
+                    if (context.Principal?.Identity is ClaimsIdentity identity)
+                    {
+                        var realmAccessClaim = identity.FindFirst("realm_access")?.Value;
+                        if (!string.IsNullOrEmpty(realmAccessClaim))
+                        {
+                            try
+                            {
+                                using var jsonDoc = System.Text.Json.JsonDocument.Parse(realmAccessClaim);
+                                if (jsonDoc.RootElement.TryGetProperty("roles", out var rolesArray))
+                                {
+                                    foreach (var role in rolesArray.EnumerateArray())
+                                    {
+                                        var roleName = role.GetString();
+                                        if (!string.IsNullOrEmpty(roleName))
+                                        {
+                                            identity.AddClaim(new Claim(ClaimTypes.Role, roleName));
+                                        }
+                                    }
+                                }
+                            }
+                            catch
+                            {
+                                // Ignorovat chyby
+                            }
+                        }
+                    }
+                    return Task.CompletedTask;
+                }
+            };
         });
 
 builder.Services.AddAuthorization();
-
-// Předání stavu přihlášení do Razor komponent
 builder.Services.AddCascadingAuthenticationState();
 
-// Konfigurace HttpClient pro vnitřní volání z webového serveru na WebApi
+// HttpClient konfigurace
 var apiAddress = builder.Configuration["services:webapi:http:0"]
               ?? builder.Configuration["services:webapi:https:0"]
               ?? "http://webapi";
@@ -92,15 +126,13 @@ if (app.Environment.IsDevelopment())
     app.UseWebAssemblyDebugging();
 }
 
-// app.UseHttpsRedirection(); // <--- ZAKOMENTOVÁNO (umožní kliknout na HTTP port 5008 v dashboardu)
 app.MapStaticAssets();
 app.UseAntiforgery();
 
-// Aktivace přihlašování a zabezpečení
 app.UseAuthentication();
 app.UseAuthorization();
 
-// --- 4. LOGIN / LOGOUT ENDPOINTY PRO OIDC ---
+// --- 4. LOGIN / LOGOUT ---
 app.MapGet("/login", async (HttpContext ctx, string? returnUrl) =>
 {
     string redirectUri = "/";
@@ -121,11 +153,18 @@ app.MapGet("/logout", async (HttpContext ctx) =>
     await ctx.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
 });
 
-// --- 5. ČISTÝ C# BFF PROXY (PŘEPOSÍLÁNÍ DOTAZŮ BEZ CHYB YARPU) ---
+// --- 5. ČISTÝ C# BFF PROXY ---
 // Proxy pro Menu (GET)
 app.MapGet("/menu", async (HttpClient client) =>
 {
     var result = await client.GetFromJsonAsync<MenuItemDto[]>("/menu");
+    return Results.Ok(result);
+});
+
+// PŘIDÁNO: Proxy pro čtení seznamu všech objednávek (GET)
+app.MapGet("/orders", async (HttpClient client) =>
+{
+    var result = await client.GetFromJsonAsync<OrderDto[]>("/orders");
     return Results.Ok(result);
 });
 
@@ -139,6 +178,17 @@ app.MapPost("/orders", async (CreateOrderDto req, HttpClient client) =>
         return Results.Created($"/orders/{dto?.Id}", dto);
     }
     return Results.BadRequest(await response.Content.ReadAsStringAsync());
+});
+
+// PŘIDÁNO: Proxy pro změnu stavu objednávky kuchařem (PATCH)
+app.MapPatch("/orders/{id:guid}/state", async (Guid id, ChangeOrderStateDto req, HttpClient client) =>
+{
+    var response = await client.PatchAsJsonAsync($"/orders/{id}/state", req);
+    if (response.IsSuccessStatusCode)
+    {
+        return Results.NoContent();
+    }
+    return Results.BadRequest();
 });
 
 // Proxy pro real-time SSE stream (GET)
@@ -165,9 +215,8 @@ app.MapGet("/orders/sse", async (HttpContext context, HttpClient client, Cancell
     catch (OperationCanceledException) { }
 });
 
-// --- 6. REGISTRACE KOMPONENT S EXPLICITNÍ REFERENCÍ NA CANTEEN PAGE ---
 app.MapRazorComponents<App>()
     .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(UTB.Minute.Web.Client.Pages.Canteen).Assembly); // <--- Změněno na Canteen
+    .AddAdditionalAssemblies(typeof(UTB.Minute.Web.Client.Pages.Canteen).Assembly);
 
 app.Run();

@@ -7,13 +7,13 @@ public class HostAuthenticationStateProvider : AuthenticationStateProvider
 {
     public override Task<AuthenticationState> GetAuthenticationStateAsync()
     {
-        // Prozatím pro testování hardcodujeme přihlášeného studenta.
-        // Tím obelstíme klientský Blazor, aby si nemyslel, že musí startovat RemoteAuthenticationService,
-        // a zároveň budeme mít pro WebApi platného uživatele "Matyáš Matějík".
+        // Pro lokální vývoj ti přiřadíme roli studenta i kuchaře najednou,
+        // takže uvidíš v menu Jídelnu i Kuchyni a můžeš vesele testovat.
         var identity = new ClaimsIdentity(new[]
         {
             new Claim(ClaimTypes.Name, "Matyáš Matějík"),
-            new Claim(ClaimTypes.Role, "Student")
+            new Claim(ClaimTypes.Role, "Student"),
+            new Claim(ClaimTypes.Role, "Cook") // Přidána role Cook
         }, "KeycloakAuth");
 
         var user = new ClaimsPrincipal(identity);
