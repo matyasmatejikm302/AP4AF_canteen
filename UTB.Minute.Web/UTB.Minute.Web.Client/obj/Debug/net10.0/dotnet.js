@@ -5,7 +5,7 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
   "mainAssemblyName": "UTB.Minute.Web.Client",
   "applicationEnvironment": "Development",
   "resources": {
-    "hash": "sha256-0UIA/+XUc8hU7XEAhhQAh4tHYmUbAau/UpY7T5J6Vkg=",
+    "hash": "sha256-DsuXvacO08W2j0kJWLBB5ZPkCDGiT7GmZa2s0dPlBGE=",
     "jsModuleNative": [
       {
         "name": "dotnet.native.rjbmzc4jpg.js"
@@ -1290,8 +1290,8 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
       },
       {
         "virtualPath": "UTB.Minute.Web.Client.wasm",
-        "name": "UTB.Minute.Web.Client.l9j4pbh6sl.wasm",
-        "hash": "sha256-iY++cyxCsBMWfjxlIVDqfLrHQ+o/X1DMJlO+jW9uqLo=",
+        "name": "UTB.Minute.Web.Client.b9uf3ob1pm.wasm",
+        "hash": "sha256-73kMWqJKTVJjHNFGa/tiflPmqej2TfR4fJa/WxtA+Ao=",
         "cache": "force-cache"
       }
     ],
@@ -1304,8 +1304,8 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
       },
       {
         "virtualPath": "UTB.Minute.Web.Client.pdb",
-        "name": "UTB.Minute.Web.Client.ns8d7vkwk1.pdb",
-        "hash": "sha256-x/BDjG1rOiIO0/H2VbYuTQl3w5Lc86fcVNOJliL4Yrg=",
+        "name": "UTB.Minute.Web.Client.cl1nhpb383.pdb",
+        "hash": "sha256-MHN9oW3b0uyG6zaZqoP+u5ujqDkePqh1grocK5bQs2s=",
         "cache": "force-cache"
       }
     ],

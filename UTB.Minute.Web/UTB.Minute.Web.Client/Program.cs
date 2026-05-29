@@ -1,22 +1,19 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Components.Authorization; // Přidat using
+using UTB.Minute.Web.Client; // Přidat using
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
-// Configure OIDC authentication (Keycloak) via configuration in wwwroot/appsettings.json
-builder.Services.AddOidcAuthentication(options =>
-{
-    // Options will be bound from configuration (wwwroot/appsettings.json)
-});
-
-// HttpClient for WebAPI calls (will use the access token)
+// Nastavení HttpClienta
 builder.Services.AddHttpClient("webapi", client =>
 {
     client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress);
-}).AddHttpMessageHandler<AuthorizationMessageHandler>();
+});
 
-// Configure default client that uses token
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("webapi"));
+
+// --- NOVINKA: Registrace našeho vlastního ověřovatele ---
+builder.Services.AddAuthorizationCore();
+builder.Services.AddScoped<AuthenticationStateProvider, HostAuthenticationStateProvider>();
 
 await builder.Build().RunAsync();

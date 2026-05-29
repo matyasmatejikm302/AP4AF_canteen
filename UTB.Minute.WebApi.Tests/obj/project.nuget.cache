@@ -1,13 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "MUuEa/xLl78=",
+  "dgSpecHash": "nCTPoI5hOg4=",
   "success": true,
   "projectFilePath": "C:\\Users\\Maty\\source\\repos\\UTB.Minute.WebApi.Tests\\UTB.Minute.WebApi.Tests.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Maty\\.nuget\\packages\\aspire.keycloak.authentication\\13.3.5-preview.1.26270.6\\aspire.keycloak.authentication.13.3.5-preview.1.26270.6.nupkg.sha512",
     "C:\\Users\\Maty\\.nuget\\packages\\aspire.npgsql.entityframeworkcore.postgresql\\13.0.1\\aspire.npgsql.entityframeworkcore.postgresql.13.0.1.nupkg.sha512",
     "C:\\Users\\Maty\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\10.0.8\\microsoft.aspnetcore.authentication.jwtbearer.10.0.8.nupkg.sha512",
-    "C:\\Users\\Maty\\.nuget\\packages\\microsoft.aspnetcore.authentication.openidconnect\\10.0.7\\microsoft.aspnetcore.authentication.openidconnect.10.0.7.nupkg.sha512",
     "C:\\Users\\Maty\\.nuget\\packages\\microsoft.codecoverage\\18.5.1\\microsoft.codecoverage.18.5.1.nupkg.sha512",
     "C:\\Users\\Maty\\.nuget\\packages\\microsoft.entityframeworkcore\\10.0.8\\microsoft.entityframeworkcore.10.0.8.nupkg.sha512",
     "C:\\Users\\Maty\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\10.0.8\\microsoft.entityframeworkcore.abstractions.10.0.8.nupkg.sha512",

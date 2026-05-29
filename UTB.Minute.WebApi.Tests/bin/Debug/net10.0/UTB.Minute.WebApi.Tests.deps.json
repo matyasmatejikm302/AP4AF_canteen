@@ -21,18 +21,6 @@
           "UTB.Minute.WebApi.Tests.dll": {}
         }
       },
-      "Aspire.Keycloak.Authentication/13.3.5-preview.1.26270.6": {
-        "dependencies": {
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.8",
-          "Microsoft.AspNetCore.Authentication.OpenIdConnect": "10.0.7"
-        },
-        "runtime": {
-          "lib/net10.0/Aspire.Keycloak.Authentication.dll": {
-            "assemblyVersion": "13.3.5.0",
-            "fileVersion": "13.300.526.27006"
-          }
-        }
-      },
       "Aspire.Npgsql.EntityFrameworkCore.PostgreSQL/13.0.1": {
         "dependencies": {
           "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": "10.0.0",
@@ -56,17 +44,6 @@
           "lib/net10.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
             "assemblyVersion": "10.0.8.0",
             "fileVersion": "10.0.826.23019"
-          }
-        }
-      },
-      "Microsoft.AspNetCore.Authentication.OpenIdConnect/10.0.7": {
-        "dependencies": {
-          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "8.0.1"
-        },
-        "runtime": {
-          "lib/net10.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll": {
-            "assemblyVersion": "10.0.7.0",
-            "fileVersion": "10.0.726.21808"
           }
         }
       },
@@ -826,7 +803,6 @@
       },
       "UTB.Minute.WebApi/1.0.0": {
         "dependencies": {
-          "Aspire.Keycloak.Authentication": "13.3.5-preview.1.26270.6",
           "Aspire.Npgsql.EntityFrameworkCore.PostgreSQL": "13.0.1",
           "UTB.Minute.Contracts": "1.0.0",
           "UTB.Minute.Db": "1.0.0",
@@ -847,13 +823,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Aspire.Keycloak.Authentication/13.3.5-preview.1.26270.6": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-lHkumvPvSHU8y+opTe3txVngsxpEWrovwVKhGnuYlGxeT0CpXEqUyayGWbNTnKXnuMgYUJmxCleFyoyKDBhZCg==",
-      "path": "aspire.keycloak.authentication/13.3.5-preview.1.26270.6",
-      "hashPath": "aspire.keycloak.authentication.13.3.5-preview.1.26270.6.nupkg.sha512"
-    },
     "Aspire.Npgsql.EntityFrameworkCore.PostgreSQL/13.0.1": {
       "type": "package",
       "serviceable": true,
@@ -867,13 +836,6 @@
       "sha512": "sha512-oGnE+X/SN6jdqao9WOkOIfyZ5+a0AtluJWy1Mxndq+kcWG6sx5k6l6tucu8/wJ7o9fHfLgVCzm/c4v/KVgVk6w==",
       "path": "microsoft.aspnetcore.authentication.jwtbearer/10.0.8",
       "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.10.0.8.nupkg.sha512"
-    },
-    "Microsoft.AspNetCore.Authentication.OpenIdConnect/10.0.7": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Q7c2IKS/EwKScck80dp5zps1g62Dbqpteeh/mGMReFKuiP+88yWT4jB+mcP4cIFA+wsuIxh9uFJa6GHK4/9rzQ==",
-      "path": "microsoft.aspnetcore.authentication.openidconnect/10.0.7",
-      "hashPath": "microsoft.aspnetcore.authentication.openidconnect.10.0.7.nupkg.sha512"
     },
     "Microsoft.CodeCoverage/18.5.1": {
       "type": "package",

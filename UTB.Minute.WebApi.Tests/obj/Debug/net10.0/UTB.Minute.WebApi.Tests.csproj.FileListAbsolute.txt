@@ -15,10 +15,8 @@ C:\Users\Maty\source\repos\UTB.Minute.WebApi.Tests\bin\Debug\net10.0\UTB.Minute.
 C:\Users\Maty\source\repos\UTB.Minute.WebApi.Tests\bin\Debug\net10.0\UTB.Minute.WebApi.Tests.runtimeconfig.json
 C:\Users\Maty\source\repos\UTB.Minute.WebApi.Tests\bin\Debug\net10.0\UTB.Minute.WebApi.Tests.dll
 C:\Users\Maty\source\repos\UTB.Minute.WebApi.Tests\bin\Debug\net10.0\UTB.Minute.WebApi.Tests.pdb
-C:\Users\Maty\source\repos\UTB.Minute.WebApi.Tests\bin\Debug\net10.0\Aspire.Keycloak.Authentication.dll
 C:\Users\Maty\source\repos\UTB.Minute.WebApi.Tests\bin\Debug\net10.0\Aspire.Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\Maty\source\repos\UTB.Minute.WebApi.Tests\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-C:\Users\Maty\source\repos\UTB.Minute.WebApi.Tests\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
 C:\Users\Maty\source\repos\UTB.Minute.WebApi.Tests\bin\Debug\net10.0\Microsoft.VisualStudio.CodeCoverage.Shim.dll
 C:\Users\Maty\source\repos\UTB.Minute.WebApi.Tests\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\Maty\source\repos\UTB.Minute.WebApi.Tests\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -148,6 +146,7 @@ C:\Users\Maty\source\repos\UTB.Minute.WebApi.Tests\obj\Debug\net10.0\UTB.Minute.
 C:\Users\Maty\source\repos\UTB.Minute.WebApi.Tests\obj\Debug\net10.0\UTB.Minute.WebApi.Tests.AssemblyInfoInputs.cache
 C:\Users\Maty\source\repos\UTB.Minute.WebApi.Tests\obj\Debug\net10.0\UTB.Minute.WebApi.Tests.AssemblyInfo.cs
 C:\Users\Maty\source\repos\UTB.Minute.WebApi.Tests\obj\Debug\net10.0\UTB.Minute.WebApi.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Maty\source\repos\UTB.Minute.WebApi.Tests\obj\Debug\net10.0\UTB.Minute.WebApi.Tests.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Maty\source\repos\UTB.Minute.WebApi.Tests\obj\Debug\net10.0\UTB.Minute.WebApi.Tests.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Maty\source\repos\UTB.Minute.WebApi.Tests\obj\Debug\net10.0\rjimswa.dswa.cache.json
 C:\Users\Maty\source\repos\UTB.Minute.WebApi.Tests\obj\Debug\net10.0\rjsmrazor.dswa.cache.json

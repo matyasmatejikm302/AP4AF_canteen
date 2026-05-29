@@ -7,30 +7,33 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
-// Registrace DB
+// 1. Registrace PostgreSQL databáze
 builder.AddNpgsqlDbContext<AppDbContext>("CanteenDb");
 
-// --- NOVINKA: Nastavení ověřování přes Keycloak ---
-// Aspire si sám vytáhne adresu Keycloaku z AppHostu
+// 2. Ověřování tokenů přes Keycloak
 builder.AddKeycloakJwtAuthentication("keycloak");
 
-builder.Services.AddSingleton<SseService>();
+// 3. REGISTRACE SSE SLUŽBY (Tento řádek byl klíčový pro vyřešení tvé poslední chyby)
+builder.Services.AddSingleton<UTB.Minute.WebApi.Services.SseService>();
 
+// 4. Nastavení CORS pro komunikaci s frontendem
 builder.Services.AddCors(options => {
     options.AddDefaultPolicy(p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
 
-// Přidáme podporu autorizace (umožňuje používat atribut [Authorize])
+// 5. Podpora pro autorizaci
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
-app.UseHttpsRedirection();
+
+// POZNÁMKA: Tento řádek necháváme zakomentovaný, aby se proxy netloukla s HTTPS přesměrováním
+// app.UseHttpsRedirection(); 
+
 app.UseCors();
 
-// --- NOVINKA: Aktivace zabezpečení ---
-// Program.cs (po builder.Build())
+// 6. Aktivace zabezpečení na backendu (pouze pokud existuje konfigurace pro Keycloak)
 if (builder.Configuration.GetSection("keycloak").Exists())
 {
     app.UseAuthentication();
@@ -38,11 +41,11 @@ if (builder.Configuration.GetSection("keycloak").Exists())
 }
 else
 {
-    // Volitelně: logovat varování, že auth není povolena
     var logger = app.Services.GetRequiredService<ILogger<Program>>();
     logger.LogWarning("Keycloak configuration not found; authentication middleware not enabled.");
 }
 
+// 7. Registrace našich endpointů
 app.MapMealEndpoints();
 app.MapMenuEndpoints();
 app.MapOrderEndpoints();

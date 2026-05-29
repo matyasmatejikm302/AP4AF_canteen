@@ -6,10 +6,8 @@ C:\Users\Maty\source\repos\UTB.Minute.WebApi\bin\Debug\net10.0\UTB.Minute.WebApi
 C:\Users\Maty\source\repos\UTB.Minute.WebApi\bin\Debug\net10.0\UTB.Minute.WebApi.runtimeconfig.json
 C:\Users\Maty\source\repos\UTB.Minute.WebApi\bin\Debug\net10.0\UTB.Minute.WebApi.dll
 C:\Users\Maty\source\repos\UTB.Minute.WebApi\bin\Debug\net10.0\UTB.Minute.WebApi.pdb
-C:\Users\Maty\source\repos\UTB.Minute.WebApi\bin\Debug\net10.0\Aspire.Keycloak.Authentication.dll
 C:\Users\Maty\source\repos\UTB.Minute.WebApi\bin\Debug\net10.0\Aspire.Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\Maty\source\repos\UTB.Minute.WebApi\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-C:\Users\Maty\source\repos\UTB.Minute.WebApi\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
 C:\Users\Maty\source\repos\UTB.Minute.WebApi\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\Maty\source\repos\UTB.Minute.WebApi\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\Maty\source\repos\UTB.Minute.WebApi\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Relational.dll
