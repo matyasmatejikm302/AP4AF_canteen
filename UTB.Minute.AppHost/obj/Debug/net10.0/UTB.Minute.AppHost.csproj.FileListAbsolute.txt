@@ -5,6 +5,7 @@ C:\Users\Maty\source\repos\UTB.Minute.AppHost\bin\Debug\net10.0\UTB.Minute.AppHo
 C:\Users\Maty\source\repos\UTB.Minute.AppHost\bin\Debug\net10.0\UTB.Minute.AppHost.pdb
 C:\Users\Maty\source\repos\UTB.Minute.AppHost\bin\Debug\net10.0\Aspire.Hosting.dll
 C:\Users\Maty\source\repos\UTB.Minute.AppHost\bin\Debug\net10.0\Aspire.Hosting.AppHost.dll
+C:\Users\Maty\source\repos\UTB.Minute.AppHost\bin\Debug\net10.0\Aspire.Hosting.Keycloak.dll
 C:\Users\Maty\source\repos\UTB.Minute.AppHost\bin\Debug\net10.0\Aspire.Hosting.PostgreSQL.dll
 C:\Users\Maty\source\repos\UTB.Minute.AppHost\bin\Debug\net10.0\HealthChecks.NpgSql.dll
 C:\Users\Maty\source\repos\UTB.Minute.AppHost\bin\Debug\net10.0\HealthChecks.Uris.dll

@@ -15,10 +15,11 @@ public static class OrderEndpoints
     {
         var group = app.MapGroup("/orders");
         group.MapGet("/", GetOrders);
-        group.MapPost("/", CreateOrder);
-        group.MapPatch("/{id:guid}/state", ChangeOrderState);
 
-        // SSE Endpoint - přidáme metadata pro Swagger/nástroje, i když je nepoužíváme
+        // Pouze přihlášený uživatel může vytvořit objednávku!
+        group.MapPost("/", CreateOrder).RequireAuthorization();
+
+        group.MapPatch("/{id:guid}/state", ChangeOrderState).RequireAuthorization();
         group.MapGet("/sse", SubscribeToUpdates).Produces(StatusCodes.Status200OK, contentType: "text/event-stream");
     }
 

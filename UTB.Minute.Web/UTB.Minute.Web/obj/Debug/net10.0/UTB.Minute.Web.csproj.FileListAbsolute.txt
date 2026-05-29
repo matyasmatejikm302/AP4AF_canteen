@@ -21,7 +21,11 @@ C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\UTB.M
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\UTB.Minute.Web.runtimeconfig.json
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\UTB.Minute.Web.dll
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\UTB.Minute.Web.pdb
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Aspire.Keycloak.Authentication.dll
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Microsoft.AspNetCore.Components.WebAssembly.dll
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Microsoft.AspNetCore.Components.WebAssembly.Server.dll
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Microsoft.DotNet.HotReload.WebAssembly.Browser.dll
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
@@ -37,6 +41,12 @@ C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Micro
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Microsoft.Extensions.ServiceDiscovery.Abstractions.dll
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Microsoft.Extensions.Telemetry.dll
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Microsoft.Extensions.Telemetry.Abstractions.dll
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Microsoft.JSInterop.WebAssembly.dll
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\OpenTelemetry.dll
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\OpenTelemetry.Api.dll
@@ -49,6 +59,7 @@ C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\OpenT
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Polly.Core.dll
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Polly.Extensions.dll
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Polly.RateLimiting.dll
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\System.IO.Hashing.dll
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\Yarp.ReverseProxy.dll
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\bin\Debug\net10.0\UTB.Minute.Contracts.dll
@@ -72,6 +83,7 @@ C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\rjsmc
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\jsmodules\jsmodules.build.manifest.json
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\scopedcss\bundle\UTB.Minute.Web.styles.css
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\compressed\f9o902iofb-{0}-99zm1jdh75-99zm1jdh75.gz
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\compressed\f32kn295nz-{0}-mhh8mf6cmj-mhh8mf6cmj.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\compressed\6lbbrjr0g0-{0}-khy4lop6wu-khy4lop6wu.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\compressed\nllqb6q23j-{0}-bqjiyaj88i-bqjiyaj88i.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\compressed\bv53yw2hhu-{0}-c2jlpeoesf-c2jlpeoesf.gz
@@ -120,7 +132,6 @@ C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\compr
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\compressed\pbno2nt341-{0}-0i02oychrm-0i02oychrm.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\compressed\7s4swr76dv-{0}-ej96puwv3k-ej96puwv3k.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\compressed\plw0dpcsgh-{0}-cj5793hgrt-cj5793hgrt.gz
-C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\compressed\hc7aux064b-{0}-g3tc7cb43x-g3tc7cb43x.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\staticwebassets.build.json
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\staticwebassets.build.json.cache
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\staticwebassets.development.json

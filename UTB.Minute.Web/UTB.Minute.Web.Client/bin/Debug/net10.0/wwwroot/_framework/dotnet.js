@@ -5,7 +5,7 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
   "mainAssemblyName": "UTB.Minute.Web.Client",
   "applicationEnvironment": "Development",
   "resources": {
-    "hash": "sha256-Ax2gh8Pv8ozZjqBpwZQmY9STDGdSERKuEfI4y0mDVUA=",
+    "hash": "sha256-0UIA/+XUc8hU7XEAhhQAh4tHYmUbAau/UpY7T5J6Vkg=",
     "jsModuleNative": [
       {
         "name": "dotnet.native.rjbmzc4jpg.js"
@@ -71,6 +71,12 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
         "cache": "force-cache"
       },
       {
+        "virtualPath": "Microsoft.AspNetCore.Components.Authorization.wasm",
+        "name": "Microsoft.AspNetCore.Components.Authorization.irgpr2goey.wasm",
+        "hash": "sha256-HmQoCJe3THxiOoYqbmq9h4Jl+jHxIGnolLaDQNNTtEk=",
+        "cache": "force-cache"
+      },
+      {
         "virtualPath": "Microsoft.AspNetCore.Components.Forms.wasm",
         "name": "Microsoft.AspNetCore.Components.Forms.ukwjki0ahc.wasm",
         "hash": "sha256-UjiC0/pu9/XFL0+MoRp9IFxwOAmTAmZ+xIhorjg3rIk=",
@@ -86,6 +92,12 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
         "virtualPath": "Microsoft.AspNetCore.Components.WebAssembly.wasm",
         "name": "Microsoft.AspNetCore.Components.WebAssembly.3zjz83g9s6.wasm",
         "hash": "sha256-IXyU77g0RsTgP9JDXjrfWQoHciRLOblW7MX67xpznDA=",
+        "cache": "force-cache"
+      },
+      {
+        "virtualPath": "Microsoft.AspNetCore.Components.WebAssembly.Authentication.wasm",
+        "name": "Microsoft.AspNetCore.Components.WebAssembly.Authentication.9wqyjpsng9.wasm",
+        "hash": "sha256-qTP744/OMOJ3siPi+pw5jgMUZUrEhHq7IlA3ArgMDlo=",
         "cache": "force-cache"
       },
       {
@@ -1272,28 +1284,28 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
       },
       {
         "virtualPath": "UTB.Minute.Contracts.wasm",
-        "name": "UTB.Minute.Contracts.vmfqtodmm8.wasm",
-        "hash": "sha256-WUFz49Y8UwqshkebVR0tR79l72n788EavwH/80nZvvk=",
+        "name": "UTB.Minute.Contracts.8fqj8ic54q.wasm",
+        "hash": "sha256-hJxymzLnRbNWkXQw2x6YD34Gya1BmetKu7ubd/ny3gQ=",
         "cache": "force-cache"
       },
       {
         "virtualPath": "UTB.Minute.Web.Client.wasm",
-        "name": "UTB.Minute.Web.Client.243qww725r.wasm",
-        "hash": "sha256-vt1tvfg458LuASftJ1Sj0sT0HZFnI3WOqzaaJ6460x8=",
+        "name": "UTB.Minute.Web.Client.l9j4pbh6sl.wasm",
+        "hash": "sha256-iY++cyxCsBMWfjxlIVDqfLrHQ+o/X1DMJlO+jW9uqLo=",
         "cache": "force-cache"
       }
     ],
     "pdb": [
       {
         "virtualPath": "UTB.Minute.Contracts.pdb",
-        "name": "UTB.Minute.Contracts.089slurmf6.pdb",
-        "hash": "sha256-sLokpAObPHR8lmcCrdJX6jVmltMrhJXa1UvR8cIz9Tw=",
+        "name": "UTB.Minute.Contracts.572at85uik.pdb",
+        "hash": "sha256-oVZ8Azfj2iYUxfuezgtBWaRnMTkA4hEu49v1542084k=",
         "cache": "force-cache"
       },
       {
         "virtualPath": "UTB.Minute.Web.Client.pdb",
-        "name": "UTB.Minute.Web.Client.tsm75c2jas.pdb",
-        "hash": "sha256-09vzheB3wSX21xQV+EyGpZun0KAGgD7qhrtKULunLzY=",
+        "name": "UTB.Minute.Web.Client.ns8d7vkwk1.pdb",
+        "hash": "sha256-x/BDjG1rOiIO0/H2VbYuTQl3w5Lc86fcVNOJliL4Yrg=",
         "cache": "force-cache"
       }
     ],
@@ -1310,8 +1322,7 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
   },
   "debugLevel": -1,
   "appsettings": [
-    "../appsettings.Development.json",
-    "../appsettings.json"
+    "../appsettings.Development.json"
   ],
   "globalizationMode": "sharded",
   "extensions": {
@@ -1350,7 +1361,7 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
         "System.Text.Encoding.EnableUnsafeUTF7Encoding": false,
         "System.Text.Json.JsonSerializer.IsReflectionEnabledByDefault": true,
         "System.Threading.Thread.EnableAutoreleasePool": false,
-        "Microsoft.AspNetCore.Components.Endpoints.NavigationManager.DisableThrowNavigationException": true
+        "Microsoft.AspNetCore.Components.Endpoints.NavigationManager.DisableThrowNavigationException": false
       }
     }
   }

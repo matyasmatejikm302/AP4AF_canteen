@@ -62,6 +62,10 @@
               "target": "Package",
               "version": "[13.3.5, )"
             },
+            "Aspire.Hosting.Keycloak": {
+              "target": "Package",
+              "version": "[13.3.5-preview.1.26270.6, )"
+            },
             "Aspire.Hosting.Orchestration.win-x64": {
               "target": "Package",
               "version": "[13.3.5, )",

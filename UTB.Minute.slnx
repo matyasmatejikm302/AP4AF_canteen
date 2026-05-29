@@ -2,7 +2,9 @@
   <Folder Name="/Položky řešení/">
     <File Path="README.md" />
   </Folder>
+  <Project Path="UTB.Minute.AdminClient/UTB.Minute.AdminClient.csproj" />
   <Project Path="UTB.Minute.AppHost/UTB.Minute.AppHost.csproj" Id="7f79f9a7-c48f-43e3-ad28-634d39825525" />
+  <Project Path="UTB.Minute.CanteenClient/UTB.Minute.CanteenClient.csproj" />
   <Project Path="UTB.Minute.Contracts/UTB.Minute.Contracts.csproj" />
   <Project Path="UTB.Minute.Db/UTB.Minute.Db.csproj" />
   <Project Path="UTB.Minute.DbManager/UTB.Minute.DbManager.csproj" />

@@ -1,0 +1,56 @@
+@page "/"
+@using Microsoft.AspNetCore.Components
+@inject NavigationManager Nav
+@inject IJSRuntime JS
+@rendermode InteractiveWebAssembly
+
+<PageTitle>Vítejte - Přihlášení</PageTitle>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title mb-3">Přihlášení</h3>
+
+                    <div class="mb-3">
+                        <label class="form-label">Uživatelské jméno</label>
+                        <input class="form-control" @bind="username" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Role</label>
+                        <select class="form-select" @bind="role">
+                            <option value="student">Strávník</option>
+                            <option value="cook">Kuchař</option>
+                        </select>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" @onclick="Login">Lokální demo přihlášení</button>
+                        <button class="btn btn-outline-primary" @onclick="UseOidc">Přihlásit přes Keycloak (OIDC)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string username = "Maty";
+    private string role = "student";
+
+    private async Task Login()
+    {
+        var userId = role == "cook" ? "Cook-" + username : "Student-" + username;
+        // store in localStorage for the canteen page
+        await JS.InvokeVoidAsync("localStorage.setItem", "currentUserId", userId);
+        if (role == "cook") Nav.NavigateTo("/kitchen"); else Nav.NavigateTo("/canteen");
+    }
+
+    private void UseOidc()
+    {
+        var target = role == "cook" ? "/kitchen" : "/canteen";
+        Nav.NavigateTo($"/login?returnUrl={Uri.EscapeDataString(target)}", forceLoad: true);
+    }
+}

@@ -7,6 +7,7 @@ C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\UTB.Minute.DbM
 C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\UTB.Minute.DbManager.dll
 C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\UTB.Minute.DbManager.pdb
 C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Aspire.Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -23,6 +24,12 @@ C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Microsoft.Exte
 C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Microsoft.Extensions.ServiceDiscovery.Abstractions.dll
 C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Microsoft.Extensions.Telemetry.dll
 C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Microsoft.Extensions.Telemetry.Abstractions.dll
+C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Microsoft.OpenApi.dll
 C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Npgsql.dll
 C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Npgsql.DependencyInjection.dll
@@ -39,6 +46,7 @@ C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\OpenTelemetry.
 C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Polly.Core.dll
 C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Polly.Extensions.dll
 C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\Polly.RateLimiting.dll
+C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\UTB.Minute.Db.dll
 C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\UTB.Minute.ServiceDefaults.dll
 C:\Users\Maty\source\repos\UTB.Minute.DbManager\bin\Debug\net10.0\UTB.Minute.Db.pdb

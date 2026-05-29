@@ -1,4 +1,2 @@
-C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\wwwroot\appsettings.json
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\wwwroot\appsettings.Development.json
 wwwroot\appsettings.Development.json
-wwwroot\appsettings.json

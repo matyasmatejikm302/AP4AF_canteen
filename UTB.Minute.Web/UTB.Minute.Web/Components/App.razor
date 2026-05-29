@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Components.Authorization
+<!DOCTYPE html>
 <html lang="cs">
 
 <head>
@@ -15,7 +16,9 @@
 
 <body>
     <!-- Hlavní směrovač Blazoru - rendermode musí být nastaven na WebAssembly -->
-    <Routes @rendermode="InteractiveWebAssembly" />
+    <CascadingAuthenticationState>
+        <Routes @rendermode="InteractiveWebAssembly" />
+    </CascadingAuthenticationState>
 
     <!-- Skript Blazoru - musí zde být přesně JEDNOU -->
     <script src="/_framework/blazor.web.js"></script>

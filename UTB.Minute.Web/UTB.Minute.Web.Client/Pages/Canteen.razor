@@ -1,6 +1,6 @@
-﻿@page "/"
-@page "/canteen"
+﻿@page "/canteen"
 @using UTB.Minute.Contracts
+@using Microsoft.AspNetCore.Components.Authorization
 @using System.Text.Json
 @inject HttpClient Http
 @inject IJSRuntime JS
@@ -11,102 +11,100 @@
 
 <div class="container py-4">
     <div class="d-flex align-items-center mb-4">
-        <h1 class="display-5 fw-bold text-primary">🍴 Dnešní nabídka</h1>
+        <h1 class="display-5 fw-bold text-primary">🍴 Jídelna UTB</h1>
         <div class="ms-auto">
-            <span class="badge bg-success p-2 shadow-sm">Real-time update: Aktivní</span>
+            <AuthorizeView Context="auth">
+                <Authorized>
+                    <span class="badge bg-light text-dark border p-2 me-2">👤 @auth.User.Identity?.Name</span>
+                </Authorized>
+                <NotAuthorized>
+                    <span class="badge bg-light text-dark border p-2 me-2">👤 @currentUserId</span>
+                </NotAuthorized>
+            </AuthorizeView>
+            <span class="badge bg-success p-2 shadow-sm">SSE: Aktivní</span>
         </div>
     </div>
 
-    @if (menuItems == null)
-    {
-        <div class="text-center py-5">
-            <div class="spinner-border text-primary" role="status"></div>
-            <p class="mt-2 text-muted">Načítám menu z kuchyně...</p>
-        </div>
-    }
-    else if (!menuItems.Any())
-    {
-        <div class="alert alert-info shadow-sm">
-            Dnes v menu zatím nic není. V Dashboardu klikněte na <strong>Restart Database</strong>.
-        </div>
-    }
-    else
-    {
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            @foreach (var item in menuItems)
-            {
+    <h2 class="h4 mb-3 border-bottom pb-2">Dnešní menu</h2>
+    @if (menuItems == null) {
+        <div class="spinner-border text-primary" role="status"></div>
+    } else {
+        <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+            @foreach (var item in menuItems) {
                 <div class="col">
-                    <div class="card h-100 shadow-sm border-0 bg-light">
+                    <div class="card h-100 shadow-sm">
                         <div class="card-body">
-                            <h5 class="card-title fw-bold text-dark">@item.Meal.Name</h5>
-                            <p class="card-text text-secondary small">@item.Meal.Description</p>
-                        </div>
-                        <div class="card-footer bg-white border-0 pb-3">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="h4 text-primary mb-0">@item.Meal.Price Kč</span>
-                                <span class="badge @(item.AvailablePortions > 0 ? "bg-info" : "bg-danger")">
-                                    Skladem: @item.AvailablePortions ks
-                                </span>
+                            <h5 class="card-title fw-bold">@item.Meal.Name</h5>
+                            <p class="small text-muted">@item.Meal.Description</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="h5 mb-0">@item.Meal.Price Kč</span>
+                                <span class="badge @(item.AvailablePortions > 0 ? "bg-info" : "bg-danger")">Skladem: @item.AvailablePortions</span>
                             </div>
-                            <button class="btn @(item.AvailablePortions > 0 ? "btn-primary" : "btn-outline-secondary") w-100 py-2 fw-bold shadow-sm"
-                                    @onclick="() => OrderMeal(item)"
-                                    disabled="@(item.AvailablePortions <= 0)">
-                                @(item.AvailablePortions > 0 ? "OBJEDNAT" : "VYPRODÁNO")
-                            </button>
+                            <button class="btn btn-primary w-100 mt-3" @onclick="() => OrderMeal(item)" disabled="@(item.AvailablePortions <= 0)">OBJEDNAT</button>
                         </div>
                     </div>
                 </div>
             }
         </div>
     }
+
+    <h2 class="h4 mb-3 border-bottom pb-2">📋 Moje objednávky</h2>
+    <div class="list-group shadow-sm">
+        @foreach (var order in myOrders.OrderByDescending(o => o.Id)) {
+            <div class="list-group-item d-flex justify-content-between align-items-center">
+                <span>Objednávka č. @order.Id.ToString().Substring(0, 8)</span>
+                <span class="badge rounded-pill @(order.State == OrderStateDto.Ready ? "bg-warning text-dark" : "bg-secondary")">@order.State</span>
+            </div>
+        }
+    </div>
 </div>
 
 @code {
     private List<MenuItemDto>? menuItems;
+    private List<OrderDto> myOrders = new();
     private DotNetObjectReference<Canteen>? objRef;
+    private string currentUserId = "Student-Anonymous";
 
-    protected override async Task OnInitializedAsync()
-    {
-        try
-        {
-            // Voláme relativní cestu, kterou odchytí Proxy na serveru
+    protected override async Task OnInitializedAsync() {
+        // Try to read current user id from localStorage (set by the login page)
+        try {
+            var id = await JS.InvokeAsync<string>("localStorage.getItem", "currentUserId");
+            if (!string.IsNullOrEmpty(id)) currentUserId = id;
+        } catch { }
+
+        try {
             menuItems = (await Http.GetFromJsonAsync<MenuItemDto[]>("/menu"))?.ToList();
-        }
-        catch
-        {
-            menuItems = new();
-        }
+            var all = await Http.GetFromJsonAsync<OrderDto[]>("/orders");
+            myOrders = all?.Where(o => o.StudentId == currentUserId).ToList() ?? new();
+        } catch { }
 
         objRef = DotNetObjectReference.Create(this);
-        _ = Task.Run(async () =>
-        {
+        _ = Task.Run(async () => {
             await Task.Delay(1000);
-            // SSE voláme relativně přes naši Proxy
             await JS.InvokeVoidAsync("setupSse", objRef, "/orders/sse");
         });
     }
 
-    private async Task OrderMeal(MenuItemDto item)
-    {
-        var request = new CreateOrderDto(item.Id, "Student-Matyas");
-        await Http.PostAsJsonAsync("/orders", request);
+    private async Task OrderMeal(MenuItemDto item) {
+        await Http.PostAsJsonAsync("/orders", new CreateOrderDto(item.Id, currentUserId));
     }
 
     [JSInvokable]
-    public void OnOrderUpdate(string json)
-    {
-        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-        var update = JsonSerializer.Deserialize<OrderDto>(json, options);
-        
-        if (update != null && menuItems != null)
-        {
-            var menuItem = menuItems.FirstOrDefault(m => m.Id == update.MenuItemId);
-            if (menuItem != null && menuItem.AvailablePortions > 0)
-            {
-                menuItem.AvailablePortions--;
-                StateHasChanged();
-            }
+    public void OnOrderUpdate(string json) {
+        var update = JsonSerializer.Deserialize<OrderDto>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        if (update == null) return;
+
+        if (update.State == OrderStateDto.Preparing) {
+            var m = menuItems?.FirstOrDefault(i => i.Id == update.MenuItemId);
+            if (m != null) m.AvailablePortions--;
         }
+
+        if (update.StudentId == currentUserId) {
+            var existing = myOrders.FirstOrDefault(o => o.Id == update.Id);
+            if (existing != null) existing.State = update.State;
+            else myOrders.Insert(0, update);
+        }
+        StateHasChanged();
     }
 
     public void Dispose() => objRef?.Dispose();

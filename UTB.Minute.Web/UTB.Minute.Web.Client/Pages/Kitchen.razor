@@ -1,0 +1,108 @@
+﻿@page "/kitchen"
+@using UTB.Minute.Contracts
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@inject HttpClient Http
+@inject NavigationManager Nav
+@attribute [Authorize(Roles = "cook")]
+@rendermode InteractiveWebAssembly
+
+<PageTitle>Kuchyně - Příprava jídel</PageTitle>
+
+<div class="container mt-4">
+    <h1 class="mb-4 text-danger">👨‍🍳 Přehled pro kuchyni</h1>
+
+    <AuthorizeView Roles="cook">
+        <Authorized>
+            @if (orders == null)
+            {
+                <div class="spinner-border" role="status"></div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID Objednávky</th>
+                                <th>Student</th>
+                                <th>Stav</th>
+                                <th>Akce</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in orders.Where(o => o.State != OrderStateDto.Completed))
+                            {
+                                <tr>
+                                    <td>@order.Id.ToString().Substring(0, 8)...</td>
+                                    <td>@order.StudentId</td>
+                                    <td>
+                                        <span class="badge @GetBadgeClass(order.State)">@order.State</span>
+                                    </td>
+                                    <td>
+                                        @if (order.State == OrderStateDto.Preparing)
+                                        {
+                                            <button class="btn btn-warning btn-sm" @onclick="() => UpdateState(order.Id, OrderStateDto.Ready)">
+                                                HOTOVO - K ODBĚRU
+                                            </button>
+                                        }
+                                        @if (order.State == OrderStateDto.Ready)
+                                        {
+                                            <button class="btn btn-success btn-sm" @onclick="() => UpdateState(order.Id, OrderStateDto.Completed)">
+                                                VYDÁNO
+                                            </button>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </Authorized>
+        <NotAuthorized>
+            <div class="alert alert-warning">
+                Pro přístup je potřeba přihlášení jako kuchař.
+                <div class="mt-2">
+                    <button class="btn btn-primary btn-sm" @onclick="NavigateToLogin">Přihlásit přes Keycloak</button>
+                </div>
+            </div>
+        </NotAuthorized>
+    </AuthorizeView>
+
+</div>
+
+@code {
+    private OrderDto[]? orders;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await RefreshOrders();
+    }
+
+@code {
+    private void NavigateToLogin()
+    {
+        Nav.NavigateTo("/login?returnUrl=/kitchen", true);
+    }
+}
+
+    private async Task RefreshOrders()
+    {
+        orders = await Http.GetFromJsonAsync<OrderDto[]>("/orders");
+    }
+
+    private async Task UpdateState(Guid id, OrderStateDto newState)
+    {
+        await Http.PatchAsJsonAsync($"/orders/{id}/state", new ChangeOrderStateDto(newState));
+        await RefreshOrders();
+    }
+
+    private string GetBadgeClass(OrderStateDto state) => state switch
+    {
+        OrderStateDto.Preparing => "bg-secondary",
+        OrderStateDto.Ready => "bg-warning text-dark",
+        OrderStateDto.Completed => "bg-success",
+        _ => "bg-light text-dark"
+    };
+}

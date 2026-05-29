@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "PI/GS068WDk=",
+  "dgSpecHash": "NWFeNgy79p8=",
   "success": true,
   "projectFilePath": "C:\\Users\\Maty\\source\\repos\\UTB.Minute.Web\\UTB.Minute.Web.Client\\UTB.Minute.Web.Client.csproj",
   "expectedPackageFiles": [
@@ -8,9 +8,12 @@
     "C:\\Users\\Maty\\.nuget\\packages\\microsoft.aspnetcore.authorization\\10.0.8\\microsoft.aspnetcore.authorization.10.0.8.nupkg.sha512",
     "C:\\Users\\Maty\\.nuget\\packages\\microsoft.aspnetcore.components\\10.0.8\\microsoft.aspnetcore.components.10.0.8.nupkg.sha512",
     "C:\\Users\\Maty\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\10.0.8\\microsoft.aspnetcore.components.analyzers.10.0.8.nupkg.sha512",
+    "C:\\Users\\Maty\\.nuget\\packages\\microsoft.aspnetcore.components.authorization\\10.0.8\\microsoft.aspnetcore.components.authorization.10.0.8.nupkg.sha512",
     "C:\\Users\\Maty\\.nuget\\packages\\microsoft.aspnetcore.components.forms\\10.0.8\\microsoft.aspnetcore.components.forms.10.0.8.nupkg.sha512",
     "C:\\Users\\Maty\\.nuget\\packages\\microsoft.aspnetcore.components.web\\10.0.8\\microsoft.aspnetcore.components.web.10.0.8.nupkg.sha512",
     "C:\\Users\\Maty\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly\\10.0.8\\microsoft.aspnetcore.components.webassembly.10.0.8.nupkg.sha512",
+    "C:\\Users\\Maty\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\10.0.8\\microsoft.aspnetcore.components.webassembly.authentication.10.0.8.nupkg.sha512",
+    "C:\\Users\\Maty\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.devserver\\10.0.8\\microsoft.aspnetcore.components.webassembly.devserver.10.0.8.nupkg.sha512",
     "C:\\Users\\Maty\\.nuget\\packages\\microsoft.aspnetcore.metadata\\10.0.8\\microsoft.aspnetcore.metadata.10.0.8.nupkg.sha512",
     "C:\\Users\\Maty\\.nuget\\packages\\microsoft.dotnet.hotreload.webassembly.browser\\10.0.204\\microsoft.dotnet.hotreload.webassembly.browser.10.0.204.nupkg.sha512",
     "C:\\Users\\Maty\\.nuget\\packages\\microsoft.entityframeworkcore\\10.0.8\\microsoft.entityframeworkcore.10.0.8.nupkg.sha512",

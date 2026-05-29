@@ -23,6 +23,9 @@ public record MenuItemDto
 public record CreateMenuItemDto(DateOnly Date, int AvailablePortions, Guid MealId);
 public record UpdateMenuItemDto(DateOnly Date, int AvailablePortions, Guid MealId);
 
-public record OrderDto(Guid Id, Guid MenuItemId, string StudentId, OrderStateDto State);
+public record OrderDto(Guid Id, Guid MenuItemId, string StudentId, OrderStateDto State)
+{
+    public OrderStateDto State { get; set; } = State;
+}
 public record CreateOrderDto(Guid MenuItemId, string StudentId);
 public record ChangeOrderStateDto(OrderStateDto NewState);

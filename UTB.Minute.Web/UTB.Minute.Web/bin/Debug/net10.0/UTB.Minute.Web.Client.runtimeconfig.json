@@ -46,7 +46,7 @@
       "System.Text.Encoding.EnableUnsafeUTF7Encoding": false,
       "System.Text.Json.JsonSerializer.IsReflectionEnabledByDefault": true,
       "System.Threading.Thread.EnableAutoreleasePool": false,
-      "Microsoft.AspNetCore.Components.Endpoints.NavigationManager.DisableThrowNavigationException": true
+      "Microsoft.AspNetCore.Components.Endpoints.NavigationManager.DisableThrowNavigationException": false
     }
   }
 }

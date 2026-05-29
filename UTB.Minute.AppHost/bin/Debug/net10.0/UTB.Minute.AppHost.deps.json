@@ -9,6 +9,7 @@
       "UTB.Minute.AppHost/1.0.0": {
         "dependencies": {
           "Aspire.Hosting.AppHost": "13.3.5",
+          "Aspire.Hosting.Keycloak": "13.3.5-preview.1.26270.6",
           "Aspire.Hosting.PostgreSQL": "13.3.5"
         },
         "runtime": {
@@ -98,6 +99,30 @@
         },
         "runtime": {
           "lib/net10.0/Aspire.Hosting.AppHost.dll": {
+            "assemblyVersion": "13.3.5.0",
+            "fileVersion": "13.300.526.27006"
+          }
+        }
+      },
+      "Aspire.Hosting.Keycloak/13.3.5-preview.1.26270.6": {
+        "dependencies": {
+          "AspNetCore.HealthChecks.Uris": "9.0.0",
+          "Aspire.Hosting": "13.3.5",
+          "Google.Protobuf": "3.33.5",
+          "Grpc.AspNetCore": "2.76.0",
+          "Grpc.Net.ClientFactory": "2.76.0",
+          "Humanizer.Core": "2.14.1",
+          "JsonPatch.Net": "3.3.0",
+          "KubernetesClient": "18.0.13",
+          "ModelContextProtocol": "1.0.0",
+          "Newtonsoft.Json": "13.0.4",
+          "Polly.Core": "8.6.5",
+          "Semver": "3.0.0",
+          "StreamJsonRpc": "2.22.23",
+          "System.IO.Hashing": "10.0.3"
+        },
+        "runtime": {
+          "lib/net8.0/Aspire.Hosting.Keycloak.dll": {
             "assemblyVersion": "13.3.5.0",
             "fileVersion": "13.300.526.27006"
           }
@@ -580,6 +605,13 @@
       "sha512": "sha512-DgHjSmad4XDpAhxs1mg2+RSMotQACp7goZ7FjQPwl9RnsaH8o8+yEMSepl0SQoRKDyeU7XLrCRhXj60xfSVSYQ==",
       "path": "aspire.hosting.apphost/13.3.5",
       "hashPath": "aspire.hosting.apphost.13.3.5.nupkg.sha512"
+    },
+    "Aspire.Hosting.Keycloak/13.3.5-preview.1.26270.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-df//k1sVNDgqWqmQNFirsbFEsBrdTLf0zS2NK2Vqh0u6RJc4Z2r9w1/kY+vvL3oPZI8iydzwhAvneNVrwJ+7gQ==",
+      "path": "aspire.hosting.keycloak/13.3.5-preview.1.26270.6",
+      "hashPath": "aspire.hosting.keycloak.13.3.5-preview.1.26270.6.nupkg.sha512"
     },
     "Aspire.Hosting.PostgreSQL/13.3.5": {
       "type": "package",
