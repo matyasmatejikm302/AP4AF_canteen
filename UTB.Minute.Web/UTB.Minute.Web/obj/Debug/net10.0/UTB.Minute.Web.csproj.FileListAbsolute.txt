@@ -84,7 +84,6 @@ C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\jsmod
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\scopedcss\bundle\UTB.Minute.Web.styles.css
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\compressed\f9o902iofb-{0}-99zm1jdh75-99zm1jdh75.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\compressed\f32kn295nz-{0}-mhh8mf6cmj-mhh8mf6cmj.gz
-C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\compressed\6lbbrjr0g0-{0}-khy4lop6wu-khy4lop6wu.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\compressed\nllqb6q23j-{0}-bqjiyaj88i-bqjiyaj88i.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\compressed\bv53yw2hhu-{0}-c2jlpeoesf-c2jlpeoesf.gz
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\compressed\cde049za1v-{0}-erw9l3u2r3-erw9l3u2r3.gz
@@ -144,3 +143,4 @@ C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\refin
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\UTB.Minute.Web.pdb
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\UTB.Minute.Web.genruntimeconfig.cache
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\ref\UTB.Minute.Web.dll
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web\obj\Debug\net10.0\compressed\6lbbrjr0g0-{0}-0s9z5ocvm3-0s9z5ocvm3.gz

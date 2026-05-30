@@ -1116,10 +1116,10 @@ C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\refint\UTB.Minute.Web.Client.dll
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\UTB.Minute.Web.Client.pdb
 C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\ref\UTB.Minute.Web.Client.dll
-C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\UTB.Minute.Web.Client.5mle1ijfmx.pdb
-C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\UTB.Minute.Web.Client.opk7p8whvi.wasm
-C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\UTB.Minute.Web.Client.5mle1ijfmx.pdb.gz
-C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\UTB.Minute.Web.Client.opk7p8whvi.wasm.gz
-C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\compressed\ubz4vqd2x7-{0}-opk7p8whvi-opk7p8whvi.gz
-C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\compressed\l0ghu22c1m-{0}-5mle1ijfmx-5mle1ijfmx.gz
-C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\compressed\3ujxxd3vbx-{0}-frug0lzfbi-frug0lzfbi.gz
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\UTB.Minute.Web.Client.po3acsw2sj.pdb
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\UTB.Minute.Web.Client.ts6mbdw6lq.wasm
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\UTB.Minute.Web.Client.po3acsw2sj.pdb.gz
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\bin\Debug\net10.0\wwwroot\_framework\UTB.Minute.Web.Client.ts6mbdw6lq.wasm.gz
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\compressed\ubz4vqd2x7-{0}-ts6mbdw6lq-ts6mbdw6lq.gz
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\compressed\l0ghu22c1m-{0}-po3acsw2sj-po3acsw2sj.gz
+C:\Users\Maty\source\repos\UTB.Minute.Web\UTB.Minute.Web.Client\obj\Debug\net10.0\compressed\3ujxxd3vbx-{0}-geo4y1cs2o-geo4y1cs2o.gz

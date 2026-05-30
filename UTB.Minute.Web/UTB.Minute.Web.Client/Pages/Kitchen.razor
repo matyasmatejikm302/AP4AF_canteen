@@ -1,175 +1,227 @@
 ﻿@page "/kitchen"
-@using UTB.Minute.Contracts
-@using System.Text.Json
+@attribute [Authorize(Roles = "canteen-cook")]
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.Authorization
-@inject HttpClient Http
-@inject IJSRuntime JS
+@using UTB.Minute.Contracts
+@using System.Net.Http.Json
 @implements IDisposable
-@rendermode InteractiveWebAssembly
+@inject IHttpClientFactory HttpClientFactory
 
-<PageTitle>Kuchyně UTB - Příprava jídla</PageTitle>
+<h3 class="mb-4">Kuchyně - Aktivní objednávky</h3>
 
-@* Zabezpečení stránky: Pouze uživatelé s rolí "Cook" mají přístup *@
-<AuthorizeView Roles="Cook">
-    <Authorized>
-        <div class="container py-4">
-            <div class="d-flex align-items-center mb-4 border-bottom pb-3">
-                <h1 class="display-5 fw-bold text-danger">👨‍🍳 Kuchyňský Displej (KDS)</h1>
-                <div class="ms-auto">
-                    <span class="badge bg-danger p-2 shadow-sm">Režim: Kuchař (@context.User.Identity?.Name)</span>
+@if (_orders == null)
+{
+    <div class="d-flex align-items-center">
+        <strong role="status">Načítání objednávek a připojování k systému...</strong>
+        <div class="spinner-border ms-auto" aria-hidden="true"></div>
+    </div>
+}
+else if (!_orders.Any())
+{
+    <div class="alert alert-info">Momentálně nejsou žádné aktivní objednávky k přípravě.</div>
+}
+else
+{
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (var order in _orders)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm @GetCardBorderClass(order.State)">
+                    <div class="card-header d-flex justify-content-between align-content-center">
+                        <span class="fw-bold">Objednávka #@order.Id.ToString().Substring(0, 8)</span>
+                        <span class="badge @GetBadgeClass(order.State)">@TranslateState(order.State)</span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">@GetMealName(order.MenuItemId)</h5>
+                        <p class="card-text text-muted">ID studenta: @order.StudentId</p>
+                    </div>
+                    <div class="card-footer d-flex gap-2">
+                        @if (order.State == OrderStateDto.Preparing)
+                        {
+                            <button class="btn btn-success btn-sm w-100" @onclick="() => UpdateState(order.Id, OrderStateDto.Ready)">
+                                Hotovo k vydání
+                            </button>
+                        }
+                        @if (order.State == OrderStateDto.Ready)
+                        {
+                            <button class="btn btn-primary btn-sm w-100" @onclick="() => UpdateState(order.Id, OrderStateDto.Completed)">
+                                Vydat jídlo
+                            </button>
+                        }
+                        <button class="btn btn-outline-danger btn-sm" @onclick="() => UpdateState(order.Id, OrderStateDto.Cancelled)">
+                            Zrušit
+                        </button>
+                    </div>
                 </div>
             </div>
-
-            @if (activeOrders == null)
-            {
-                <div class="text-center py-5">
-                    <div class="spinner-border text-danger" role="status"></div>
-                    <p class="mt-2 text-muted">Načítám objednávky z databáze...</p>
-                </div>
-            }
-            else if (!activeOrders.Any())
-            {
-                <div class="alert alert-success shadow-sm text-center py-4">
-                    <h3>🎉 Všechna jídla jsou vydána!</h3>
-                    <p class="mb-0 text-muted">Žádné čekající objednávky v pořadí.</p>
-                </div>
-            }
-            else
-            {
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                    @foreach (var order in activeOrders)
-                    {
-                        <div class="col">
-                            <div class="card h-100 shadow border-0 @GetCardBorderClass(order.State)">
-                                <div class="card-header d-flex justify-content-between align-items-center bg-transparent border-0 pt-3">
-                                    <span class="fw-bold text-muted small">ID: #@order.Id.ToString().Substring(0, 8)</span>
-                                    <span class="badge @GetBadgeClass(order.State)">@order.State.ToString().ToUpper()</span>
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title fw-bold">Strávník: @order.StudentId</h5>
-                                    <p class="card-text text-secondary">
-                                        Čeká na přípravu.
-                                    </p>
-                                </div>
-                                <div class="card-footer bg-white border-0 pb-3">
-                                    @if (order.State == OrderStateDto.Preparing)
-                                    {
-                                        <button class="btn btn-warning w-100 py-2 fw-bold text-dark" @onclick="() => UpdateState(order.Id, OrderStateDto.Ready)">
-                                            HOTOVO (K ODBĚRU)
-                                        </button>
-                                    }
-                                    @if (order.State == OrderStateDto.Ready)
-                                    {
-                                        <button class="btn btn-success w-100 py-2 fw-bold" @onclick="() => UpdateState(order.Id, OrderStateDto.Completed)">
-                                            VYDAT STRÁVNÍKOVI
-                                        </button>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div>
-            }
-        </div>
-    </Authorized>
-    <NotAuthorized>
-        <div class="container py-5 text-center">
-            <div class="alert alert-danger d-inline-block p-4 shadow">
-                <h3>🚫 Přístup odepřen</h3>
-                <p class="mb-0">Tato stránka je přístupná pouze pro kuchaře s rolí <strong>Cook</strong>.</p>
-                <a href="/" class="btn btn-primary mt-3">Zpět do Jídelny</a>
-            </div>
-        </div>
-    </NotAuthorized>
-</AuthorizeView>
+        }
+    </div>
+}
 
 @code {
-    private List<OrderDto>? activeOrders;
-    private DotNetObjectReference<Kitchen>? objRef;
+    private List<OrderDto>? _orders;
+    private Dictionary<Guid, string> _mealNamesCache = new();
+    private CancellationTokenSource? _sseCts;
+    private HttpClient? _apiClient;
+    private bool _sseConnected = false;
 
     protected override async Task OnInitializedAsync()
     {
-        // 1. Načteme všechny rozpracované objednávky (ty, které ještě nejsou kompletně vydané)
+        _apiClient = HttpClientFactory.CreateClient("webapi");
+
         try
         {
-            var all = await Http.GetFromJsonAsync<OrderDto[]>("/orders");
-            activeOrders = all?.Where(o => o.State != OrderStateDto.Completed && o.State != OrderStateDto.Cancelled).ToList();
+            var menuItems = await _apiClient.GetFromJsonAsync<MenuItemDto[]>("/menu");
+            if (menuItems != null)
+            {
+                _mealNamesCache = menuItems.ToDictionary(m => m.Id, m => m.Meal.Name);
+            }
         }
-        catch
+        catch (Exception ex)
         {
-            activeOrders = new();
+            Console.WriteLine($"Chyba při načítání menu cache: {ex.Message}");
         }
 
-        // 2. Napojíme se na SSE, aby kuchař viděl nové objednávky hned, jak je student odešle
-        objRef = DotNetObjectReference.Create(this);
-        _ = Task.Run(async () =>
+        try
         {
-            await Task.Delay(1000);
-            await JS.InvokeVoidAsync("setupSse", objRef, "/orders/sse");
-        });
+            var allOrders = await _apiClient.GetFromJsonAsync<OrderDto[]>("/orders");
+            if (allOrders != null)
+            {
+                _orders = allOrders.Where(o => o.State == OrderStateDto.Preparing || o.State == OrderStateDto.Ready).ToList();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Chyba při načítání objednávek: {ex.Message}");
+            _orders = new List<OrderDto>();
+        }
+
+        _ = StartSseListener();
+    }
+
+    private async Task StartSseListener()
+    {
+        _sseCts = new CancellationTokenSource();
+
+        while (!_sseCts.IsCancellationRequested)
+        {
+            try
+            {
+                using var response = await _apiClient!.GetAsync("/orders/sse", HttpCompletionOption.ResponseHeadersRead, _sseCts.Token);
+                using var stream = await response.Content.ReadAsStreamAsync(_sseCts.Token);
+                using var reader = new System.IO.StreamReader(stream);
+
+                _sseConnected = true;
+                StateHasChanged();
+
+                // Plně asynchronní čtení bez reader.EndOfStream pro kompatibilitu s WebAssembly
+                while (!_sseCts.Token.IsCancellationRequested)
+                {
+                    var line = await reader.ReadLineAsync(_sseCts.Token);
+                    if (line == null)
+                    {
+                        break; // Konec streamu
+                    }
+
+                    if (line.StartsWith("data: "))
+                    {
+                        var json = line.Substring(6).Trim();
+                        var updatedOrder = System.Text.Json.JsonSerializer.Deserialize<OrderDto>(json, new System.Text.Json.JsonSerializerOptions
+                        {
+                            PropertyNameCaseInsensitive = true
+                        });
+
+                        if (updatedOrder != null)
+                        {
+                            await InvokeAsync(() =>
+                            {
+                                HandleIncomingSseEvent(updatedOrder);
+                                StateHasChanged();
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"SSE odpojeno: {ex.Message}, pokus o znovupřipojení za 5 sekund...");
+                _sseConnected = false;
+                StateHasChanged();
+                await Task.Delay(5000, _sseCts.Token);
+            }
+        }
+    }
+
+    private void HandleIncomingSseEvent(OrderDto updatedOrder)
+    {
+        if (_orders == null) return;
+
+        var existing = _orders.FirstOrDefault(o => o.Id == updatedOrder.Id);
+        
+        if (updatedOrder.State == OrderStateDto.Completed || updatedOrder.State == OrderStateDto.Cancelled)
+        {
+            if (existing != null)
+            {
+                _orders.Remove(existing);
+            }
+        }
+        else
+        {
+            if (existing != null)
+            {
+                existing.State = updatedOrder.State;
+            }
+            else
+            {
+                _orders.Add(updatedOrder);
+            }
+        }
     }
 
     private async Task UpdateState(Guid orderId, OrderStateDto newState)
     {
-        // Odešleme PATCH požadavek na změnu stavu
-        var response = await Http.PatchAsJsonAsync($"/orders/{orderId}/state", new ChangeOrderStateDto(newState));
-        if (response.IsSuccessStatusCode)
+        try
         {
-            // Pokud kuchař jídlo úplně vydal (Completed), odstraníme ho z displeje
-            if (newState == OrderStateDto.Completed && activeOrders != null)
-            {
-                var order = activeOrders.FirstOrDefault(o => o.Id == orderId);
-                if (order != null)
-                {
-                    activeOrders.Remove(order);
-                    StateHasChanged();
-                }
-            }
+            var req = new ChangeOrderStateDto(newState);
+            var response = await _apiClient!.PatchAsJsonAsync($"/orders/{orderId}/state", req);
+            response.EnsureSuccessStatusCode();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Chyba při změně stavu objednávky: {ex.Message}");
         }
     }
 
-    [JSInvokable]
-    public void OnOrderUpdate(string json)
+    private string GetMealName(Guid menuItemId)
     {
-        var update = JsonSerializer.Deserialize<OrderDto>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-        if (update != null && activeOrders != null)
-        {
-            var existing = activeOrders.FirstOrDefault(o => o.Id == update.Id);
-            if (existing != null)
-            {
-                // Pokud se změnil stav (např. z Preparing na Ready), aktualizujeme kartu
-                if (update.State == OrderStateDto.Completed || update.State == OrderStateDto.Cancelled)
-                {
-                    activeOrders.Remove(existing);
-                }
-                else
-                {
-                    existing.State = update.State;
-                }
-            }
-            else if (update.State == OrderStateDto.Preparing)
-            {
-                // Pokud student vytvořil NOVOU objednávku, kuchaři okamžitě "přistane" na displeji!
-                activeOrders.Add(update);
-            }
-            StateHasChanged();
-        }
+        return _mealNamesCache.TryGetValue(menuItemId, out var mealName) ? mealName : "Neznámé jídlo";
     }
+
+    private string TranslateState(OrderStateDto state) => state switch
+    {
+        OrderStateDto.Preparing => "Připravuje se",
+        OrderStateDto.Ready => "Připraveno k vydání",
+        OrderStateDto.Completed => "Vydáno",
+        OrderStateDto.Cancelled => "Zrušeno",
+        _ => "Neznámý stav"
+    };
 
     private string GetBadgeClass(OrderStateDto state) => state switch
     {
-        OrderStateDto.Preparing => "bg-secondary",
-        OrderStateDto.Ready => "bg-warning text-dark",
-        OrderStateDto.Completed => "bg-success",
-        _ => "bg-light text-dark"
+        OrderStateDto.Preparing => "bg-warning text-dark",
+        OrderStateDto.Ready => "bg-success text-white",
+        _ => "bg-secondary"
     };
 
     private string GetCardBorderClass(OrderStateDto state) => state switch
     {
-        OrderStateDto.Preparing => "border-start border-4 border-secondary",
-        OrderStateDto.Ready => "border-start border-4 border-warning",
+        OrderStateDto.Ready => "border-success",
         _ => ""
     };
 
-    public void Dispose() => objRef?.Dispose();
+    public void Dispose()
+    {
+        _sseCts?.Cancel();
+        _sseCts?.Dispose();
+    }
 }

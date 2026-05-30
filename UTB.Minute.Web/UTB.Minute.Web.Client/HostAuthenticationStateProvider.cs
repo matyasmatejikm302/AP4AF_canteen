@@ -1,22 +1,36 @@
 ﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 
 namespace UTB.Minute.Web.Client;
 
 public class HostAuthenticationStateProvider : AuthenticationStateProvider
 {
-    public override Task<AuthenticationState> GetAuthenticationStateAsync()
-    {
-        // Pro lokální vývoj ti přiřadíme roli studenta i kuchaře najednou,
-        // takže uvidíš v menu Jídelnu i Kuchyni a můžeš vesele testovat.
-        var identity = new ClaimsIdentity(new[]
-        {
-            new Claim(ClaimTypes.Name, "Matyáš Matějík"),
-            new Claim(ClaimTypes.Role, "Student"),
-            new Claim(ClaimTypes.Role, "Cook") // Přidána role Cook
-        }, "KeycloakAuth");
+    private static readonly Task<AuthenticationState> DefaultUnauthenticatedTask =
+        Task.FromResult(new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity())));
 
-        var user = new ClaimsPrincipal(identity);
-        return Task.FromResult(new AuthenticationState(user));
+    private readonly Task<AuthenticationState> _authenticationStateTask = DefaultUnauthenticatedTask;
+
+    public HostAuthenticationStateProvider(PersistentComponentState state)
+    {
+        if (state.TryTakeFromJson<UserInfo>(nameof(UserInfo), out var userInfo) && userInfo is not null)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, userInfo.UserId),
+                new Claim(ClaimTypes.Name, userInfo.Name)
+            };
+
+            foreach (var role in userInfo.Roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
+
+            var identity = new ClaimsIdentity(claims, authenticationType: "KeycloakAuth");
+            var principal = new ClaimsPrincipal(identity);
+            _authenticationStateTask = Task.FromResult(new AuthenticationState(principal));
+        }
     }
+
+    public override Task<AuthenticationState> GetAuthenticationStateAsync() => _authenticationStateTask;
 }

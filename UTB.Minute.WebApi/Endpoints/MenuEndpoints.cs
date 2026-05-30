@@ -11,9 +11,8 @@ public static class MenuEndpoints
     public static void MapMenuEndpoints(this IEndpointRouteBuilder app)
     {
         var group = app.MapGroup("/menu");
-
-        group.MapGet("/", GetMenuItems);
-        group.MapPost("/", CreateMenuItem);
+        group.MapGet("", GetMenuItems);
+        group.MapPost("", CreateMenuItem);
         group.MapPut("/{id:guid}", UpdateMenuItem);
         group.MapDelete("/{id:guid}", DeleteMenuItem);
     }

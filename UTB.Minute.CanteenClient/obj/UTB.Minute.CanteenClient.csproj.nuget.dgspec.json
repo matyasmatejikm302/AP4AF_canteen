@@ -69,10 +69,6 @@
             "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
               "target": "Package",
               "version": "[10.0.*, )"
-            },
-            "Microsoft.AspNetCore.Components.Authorization": {
-              "target": "Package",
-              "version": "[10.0.*, )"
             }
           },
           "imports": [

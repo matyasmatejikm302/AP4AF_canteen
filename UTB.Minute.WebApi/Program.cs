@@ -13,8 +13,8 @@ builder.AddNpgsqlDbContext<AppDbContext>("CanteenDb");
 // 2. Ověřování tokenů přes Keycloak
 builder.AddKeycloakJwtAuthentication("keycloak");
 
-// 3. REGISTRACE SSE SLUŽBY (Tento řádek byl klíčový pro vyřešení tvé poslední chyby)
-builder.Services.AddSingleton<UTB.Minute.WebApi.Services.SseService>();
+// 3. Registrace SSE služby jako Singleton
+builder.Services.AddSingleton<SseService>();
 
 // 4. Nastavení CORS pro komunikaci s frontendem
 builder.Services.AddCors(options => {
@@ -28,7 +28,7 @@ var app = builder.Build();
 
 app.MapDefaultEndpoints();
 
-// POZNÁMKA: Tento řádek necháváme zakomentovaný, aby se proxy netloukla s HTTPS přesměrováním
+// POZNÁMKA: Ponecháváme zakomentované, aby se proxy netloukla s HTTPS přesměrováním
 // app.UseHttpsRedirection(); 
 
 app.UseCors();

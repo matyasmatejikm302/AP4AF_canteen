@@ -1,66 +1,96 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.EntityFrameworkCore;
+﻿using System.Net;
+using System.Net.Http.Json;
+using Aspire.Hosting.Testing;
 using UTB.Minute.Contracts;
-using UTB.Minute.Db;
-using UTB.Minute.Db.Entities;
-using UTB.Minute.WebApi.Endpoints;
 using Xunit;
 
 namespace UTB.Minute.WebApi.Tests;
 
 public class CanteenTests
 {
-    // Pomocná metoda pro vytvoření čisté in-memory DB pro každý test
-    private AppDbContext GetDbContext()
-    {
-        var options = new DbContextOptionsBuilder<AppDbContext>()
-            .UseInMemoryDatabase(Guid.NewGuid().ToString())
-            .Options;
-        return new AppDbContext(options);
-    }
-
     [Fact]
     public async Task CreateMeal_SavesToDatabase()
     {
-        var db = GetDbContext();
+        var appHost = await DistributedApplicationTestingBuilder.CreateAsync<global::UTB.Minute.AppHost.Program>();
+        await using var app = await appHost.BuildAsync();
+        await app.StartAsync();
+
+        var httpClient = app.CreateHttpClient("webapi");
         var req = new CreateMealDto("Test Jídlo", "Popis", 100);
 
-        var result = await MealEndpoints.CreateMeal(req, db);
+        var response = await httpClient.PostAsJsonAsync("/meals", req);
 
-        Assert.IsType<Created<MealDto>>(result);
-        Assert.Equal(1, await db.Meals.CountAsync());
+        Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+
+        var getResponse = await httpClient.GetAsync("/meals");
+        Assert.Equal(HttpStatusCode.OK, getResponse.StatusCode);
+
+        var meals = await getResponse.Content.ReadFromJsonAsync<List<MealDto>>();
+        Assert.NotNull(meals);
+        Assert.Contains(meals, m => m.Name == "Test Jídlo");
     }
 
     [Fact]
     public async Task CreateOrder_DecreasesPortions_And_ReturnsCreated()
     {
-        var db = GetDbContext();
-        // Příprava: jídlo a položka v menu s 5 porcemi
-        var meal = new Meal { Id = Guid.NewGuid(), Name = "Test", Description = "-", Price = 10 };
-        db.Meals.Add(meal);
-        var menu = new MenuItem { Id = Guid.NewGuid(), Date = DateOnly.FromDateTime(DateTime.Now), AvailablePortions = 5, MealId = meal.Id, RowVersion = Array.Empty<byte>() };
-        db.MenuItems.Add(menu);
-        await db.SaveChangesAsync();
+        var appHost = await DistributedApplicationTestingBuilder.CreateAsync<global::UTB.Minute.AppHost.Program>();
+        await using var app = await appHost.BuildAsync();
+        await app.StartAsync();
 
-        var req = new CreateOrderDto(menu.Id, "student1");
-        var result = await OrderEndpoints.CreateOrder(req, db);
+        var httpClient = app.CreateHttpClient("webapi");
 
-        Assert.IsType<Created<OrderDto>>(result.Result);
-        var updatedMenu = await db.MenuItems.FindAsync(menu.Id);
-        Assert.Equal(4, updatedMenu!.AvailablePortions); // Porce musí klesnout
+        var mealReq = new CreateMealDto("Test Jídlo Pro Objednávku", "Popis", 120);
+        var mealRes = await httpClient.PostAsJsonAsync("/meals", mealReq);
+        Assert.Equal(HttpStatusCode.Created, mealRes.StatusCode);
+        var createdMeal = await mealRes.Content.ReadFromJsonAsync<MealDto>();
+        Assert.NotNull(createdMeal);
+
+        var menuReq = new CreateMenuItemDto(DateOnly.FromDateTime(DateTime.Now), 5, createdMeal.Id);
+        var menuRes = await httpClient.PostAsJsonAsync("/menu", menuReq);
+        Assert.Equal(HttpStatusCode.Created, menuRes.StatusCode);
+        var createdMenu = await menuRes.Content.ReadFromJsonAsync<MenuItemDto>();
+        Assert.NotNull(createdMenu);
+
+        var orderReq = new CreateOrderDto(createdMenu.Id, "student1");
+
+        var orderRes = await httpClient.PostAsJsonAsync("/orders", orderReq);
+
+        Assert.Equal(HttpStatusCode.Created, orderRes.StatusCode);
+
+        var getMenuRes = await httpClient.GetAsync("/menu");
+        Assert.Equal(HttpStatusCode.OK, getMenuRes.StatusCode);
+
+        var menuItems = await getMenuRes.Content.ReadFromJsonAsync<List<MenuItemDto>>();
+        Assert.NotNull(menuItems);
+
+        var updatedMenu = menuItems.FirstOrDefault(m => m.Id == createdMenu.Id);
+        Assert.NotNull(updatedMenu);
+        Assert.Equal(4, updatedMenu.AvailablePortions);
     }
 
     [Fact]
     public async Task CreateOrder_WhenNoPortions_ReturnsBadRequest()
     {
-        var db = GetDbContext();
-        var menu = new MenuItem { Id = Guid.NewGuid(), Date = DateOnly.FromDateTime(DateTime.Now), AvailablePortions = 0, MealId = Guid.NewGuid(), RowVersion = Array.Empty<byte>() };
-        db.MenuItems.Add(menu);
-        await db.SaveChangesAsync();
+        var appHost = await DistributedApplicationTestingBuilder.CreateAsync<global::UTB.Minute.AppHost.Program>();
+        await using var app = await appHost.BuildAsync();
+        await app.StartAsync();
 
-        var req = new CreateOrderDto(menu.Id, "student1");
-        var result = await OrderEndpoints.CreateOrder(req, db);
+        var httpClient = app.CreateHttpClient("webapi");
 
-        Assert.IsType<BadRequest<string>>(result.Result);
+        var mealReq = new CreateMealDto("Jídlo Bez Porcí", "Popis", 120);
+        var mealRes = await httpClient.PostAsJsonAsync("/meals", mealReq);
+        var createdMeal = await mealRes.Content.ReadFromJsonAsync<MealDto>();
+        Assert.NotNull(createdMeal);
+
+        var menuReq = new CreateMenuItemDto(DateOnly.FromDateTime(DateTime.Now), 0, createdMeal.Id);
+        var menuRes = await httpClient.PostAsJsonAsync("/menu", menuReq);
+        var createdMenu = await menuRes.Content.ReadFromJsonAsync<MenuItemDto>();
+        Assert.NotNull(createdMenu);
+
+        var orderReq = new CreateOrderDto(createdMenu.Id, "student1");
+
+        var orderRes = await httpClient.PostAsJsonAsync("/orders", orderReq);
+
+        Assert.Equal(HttpStatusCode.BadRequest, orderRes.StatusCode);
     }
 }

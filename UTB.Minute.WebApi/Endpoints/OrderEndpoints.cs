@@ -5,7 +5,7 @@ using UTB.Minute.Db;
 using UTB.Minute.Db.Entities;
 using UTB.Minute.Db.Enums;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc; // Nezbytné pro [FromServices]
+using Microsoft.AspNetCore.Mvc;
 
 namespace UTB.Minute.WebApi.Endpoints;
 
@@ -14,12 +14,9 @@ public static class OrderEndpoints
     public static void MapOrderEndpoints(this IEndpointRouteBuilder app)
     {
         var group = app.MapGroup("/orders");
-
-        group.MapGet("/", GetOrders);
-        group.MapPost("/", CreateOrder);
+        group.MapGet("", GetOrders);
+        group.MapPost("", CreateOrder);
         group.MapPatch("/{id:guid}/state", ChangeOrderState);
-
-        // Jednoznačné nastavení typu obsahu pro SSE stream
         group.MapGet("/sse", SubscribeToUpdates).Produces(StatusCodes.Status200OK, contentType: "text/event-stream");
     }
 
@@ -34,7 +31,7 @@ public static class OrderEndpoints
     public static async Task<Results<Created<OrderDto>, NotFound<string>, BadRequest<string>, Conflict<string>>> CreateOrder(
         CreateOrderDto req,
         AppDbContext db,
-        [FromServices] UTB.Minute.WebApi.Services.SseService? sse = null) // Použití absolutního jmenného prostoru
+        [FromServices] UTB.Minute.WebApi.Services.SseService? sse = null)
     {
         var menuItem = await db.MenuItems.FindAsync(req.MenuItemId);
         if (menuItem is null) return TypedResults.NotFound("Menu item not found.");
@@ -74,7 +71,7 @@ public static class OrderEndpoints
         Guid id,
         ChangeOrderStateDto req,
         AppDbContext db,
-        [FromServices] UTB.Minute.WebApi.Services.SseService? sse = null) // Použití absolutního jmenného prostoru
+        [FromServices] UTB.Minute.WebApi.Services.SseService? sse = null)
     {
         if (await db.Orders.FindAsync(id) is Order o)
         {
@@ -91,13 +88,11 @@ public static class OrderEndpoints
         return TypedResults.NotFound();
     }
 
-    // Obsluha real-time SSE streamu s absolutním jmenným prostorem pro SseService
     static async Task SubscribeToUpdates(
-        [FromServices] UTB.Minute.WebApi.Services.SseService sse, // Použití absolutního jmenného prostoru
+        [FromServices] UTB.Minute.WebApi.Services.SseService sse,
         HttpContext context,
         CancellationToken ct)
     {
-        // Nastavení hlaviček pro správný SSE protokol
         context.Response.Headers.Append("Content-Type", "text/event-stream");
         context.Response.Headers.Append("Cache-Control", "no-cache");
         context.Response.Headers.Append("Connection", "keep-alive");
@@ -117,7 +112,6 @@ public static class OrderEndpoints
                 }
                 catch (OperationCanceledException)
                 {
-                    // Uživatel zavřel prohlížeč nebo obnovil stránku
                     break;
                 }
 

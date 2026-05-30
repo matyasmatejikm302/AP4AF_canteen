@@ -1280,7 +1280,7 @@
           "dependencies": {
             "Aspire.Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[13.0.1, )"
+              "version": "[13.3.5, )"
             }
           },
           "imports": [

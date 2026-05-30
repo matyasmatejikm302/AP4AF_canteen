@@ -18,11 +18,16 @@
     <Import Project="$(NuGetPackageRoot)xunit.core\2.9.3\build\xunit.core.props" Condition="Exists('$(NuGetPackageRoot)xunit.core\2.9.3\build\xunit.core.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.extensions.telemetry.abstractions\10.6.0\buildTransitive\net8.0\Microsoft.Extensions.Telemetry.Abstractions.props" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.telemetry.abstractions\10.6.0\buildTransitive\net8.0\Microsoft.Extensions.Telemetry.Abstractions.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore\10.0.8\buildTransitive\net10.0\Microsoft.EntityFrameworkCore.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore\10.0.8\buildTransitive\net10.0\Microsoft.EntityFrameworkCore.props')" />
-    <Import Project="$(NuGetPackageRoot)microsoft.testplatform.testhost\18.5.1\build\net8.0\Microsoft.TestPlatform.TestHost.props" Condition="Exists('$(NuGetPackageRoot)microsoft.testplatform.testhost\18.5.1\build\net8.0\Microsoft.TestPlatform.TestHost.props')" />
-    <Import Project="$(NuGetPackageRoot)microsoft.codecoverage\18.5.1\build\netstandard2.0\Microsoft.CodeCoverage.props" Condition="Exists('$(NuGetPackageRoot)microsoft.codecoverage\18.5.1\build\netstandard2.0\Microsoft.CodeCoverage.props')" />
-    <Import Project="$(NuGetPackageRoot)microsoft.net.test.sdk\18.5.1\build\net8.0\Microsoft.NET.Test.Sdk.props" Condition="Exists('$(NuGetPackageRoot)microsoft.net.test.sdk\18.5.1\build\net8.0\Microsoft.NET.Test.Sdk.props')" />
+    <Import Project="$(NuGetPackageRoot)aspire.dashboard.sdk.win-x64\13.3.5\buildTransitive\Aspire.Dashboard.Sdk.win-x64.props" Condition="Exists('$(NuGetPackageRoot)aspire.dashboard.sdk.win-x64\13.3.5\buildTransitive\Aspire.Dashboard.Sdk.win-x64.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.testplatform.testhost\18.6.0\build\net8.0\Microsoft.TestPlatform.TestHost.props" Condition="Exists('$(NuGetPackageRoot)microsoft.testplatform.testhost\18.6.0\build\net8.0\Microsoft.TestPlatform.TestHost.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.codecoverage\18.6.0\build\netstandard2.0\Microsoft.CodeCoverage.props" Condition="Exists('$(NuGetPackageRoot)microsoft.codecoverage\18.6.0\build\netstandard2.0\Microsoft.CodeCoverage.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.net.test.sdk\18.6.0\build\net8.0\Microsoft.NET.Test.Sdk.props" Condition="Exists('$(NuGetPackageRoot)microsoft.net.test.sdk\18.6.0\build\net8.0\Microsoft.NET.Test.Sdk.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Pkgxunit_analyzers Condition=" '$(Pkgxunit_analyzers)' == '' ">C:\Users\Maty\.nuget\packages\xunit.analyzers\1.18.0</Pkgxunit_analyzers>
+    <PkgGrpc_Tools Condition=" '$(PkgGrpc_Tools)' == '' ">C:\Users\Maty\.nuget\packages\grpc.tools\2.78.0</PkgGrpc_Tools>
+    <PkgAspire_Hosting_Orchestration_win-x64 Condition=" '$(PkgAspire_Hosting_Orchestration_win-x64)' == '' ">C:\Users\Maty\.nuget\packages\aspire.hosting.orchestration.win-x64\13.3.5</PkgAspire_Hosting_Orchestration_win-x64>
+    <PkgAspire_Hosting_AppHost Condition=" '$(PkgAspire_Hosting_AppHost)' == '' ">C:\Users\Maty\.nuget\packages\aspire.hosting.apphost\13.3.5</PkgAspire_Hosting_AppHost>
+    <PkgAspire_Dashboard_Sdk_win-x64 Condition=" '$(PkgAspire_Dashboard_Sdk_win-x64)' == '' ">C:\Users\Maty\.nuget\packages\aspire.dashboard.sdk.win-x64\13.3.5</PkgAspire_Dashboard_Sdk_win-x64>
   </PropertyGroup>
 </Project>

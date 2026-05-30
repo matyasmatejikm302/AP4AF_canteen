@@ -50,19 +50,6 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Microsoft.AspNetCore.Components.Authorization/10.0.8": {
-        "type": "package",
-        "compile": {
-          "lib/net10.0/_._": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net10.0/_._": {
-            "related": ".xml"
-          }
-        }
-      },
       "Microsoft.EntityFrameworkCore/10.0.8": {
         "type": "package",
         "dependencies": {
@@ -667,21 +654,6 @@
         "lib/net10.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.xml",
         "microsoft.aspnetcore.authentication.openidconnect.10.0.8.nupkg.sha512",
         "microsoft.aspnetcore.authentication.openidconnect.nuspec"
-      ]
-    },
-    "Microsoft.AspNetCore.Components.Authorization/10.0.8": {
-      "sha512": "DHCCXl72lcYtFAADaCoNu3wAfyr6KsSX31zAV8Y70VSPme6c2dS2YBu2OaZtH9bpfuEXiGeulL92s7AtxfanBg==",
-      "type": "package",
-      "path": "microsoft.aspnetcore.components.authorization/10.0.8",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "THIRD-PARTY-NOTICES.txt",
-        "lib/net10.0/Microsoft.AspNetCore.Components.Authorization.dll",
-        "lib/net10.0/Microsoft.AspNetCore.Components.Authorization.xml",
-        "microsoft.aspnetcore.components.authorization.10.0.8.nupkg.sha512",
-        "microsoft.aspnetcore.components.authorization.nuspec"
       ]
     },
     "Microsoft.EntityFrameworkCore/10.0.8": {
@@ -1482,7 +1454,6 @@
     "net10.0": [
       "Microsoft.AspNetCore.App.Internal.Assets >= 10.0.8",
       "Microsoft.AspNetCore.Authentication.OpenIdConnect >= 10.0.*",
-      "Microsoft.AspNetCore.Components.Authorization >= 10.0.*",
       "UTB.Minute.Contracts >= 1.0.0",
       "UTB.Minute.ServiceDefaults >= 1.0.0"
     ]
@@ -1554,10 +1525,6 @@
             "autoReferenced": true
           },
           "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
-            "target": "Package",
-            "version": "[10.0.*, )"
-          },
-          "Microsoft.AspNetCore.Components.Authorization": {
             "target": "Package",
             "version": "[10.0.*, )"
           }
@@ -1998,17 +1965,5 @@
         }
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1510",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "PackageReference Microsoft.AspNetCore.Components.Authorization se nevyřadí. Zvažte odebrání tohoto balíčku ze závislostí, protože je pravděpodobně nepotřebný.",
-      "libraryId": "Microsoft.AspNetCore.Components.Authorization",
-      "targetGraphs": [
-        "net10.0"
-      ]
-    }
-  ]
+  }
 }

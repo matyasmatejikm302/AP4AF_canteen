@@ -11,8 +11,8 @@ public static class MealEndpoints
     public static void MapMealEndpoints(this IEndpointRouteBuilder app)
     {
         var group = app.MapGroup("/meals");
-        group.MapGet("/", GetMeals);
-        group.MapPost("/", CreateMeal);
+        group.MapGet("", GetMeals);
+        group.MapPost("", CreateMeal);
         group.MapPatch("/{id:guid}/deactivate", DeactivateMeal);
     }
 

@@ -2,6 +2,23 @@
   "version": 3,
   "targets": {
     "net10.0": {
+      "Aspire.Keycloak.Authentication/13.3.5-preview.1.26270.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.7",
+          "Microsoft.AspNetCore.Authentication.OpenIdConnect": "10.0.7"
+        },
+        "compile": {
+          "lib/net10.0/Aspire.Keycloak.Authentication.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Aspire.Keycloak.Authentication.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.App.Internal.Assets/10.0.8": {
         "type": "package",
         "build": {
@@ -49,19 +66,6 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
-      },
-      "Microsoft.AspNetCore.Components.Authorization/10.0.8": {
-        "type": "package",
-        "compile": {
-          "lib/net10.0/_._": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net10.0/_._": {
-            "related": ".xml"
-          }
-        }
       },
       "Microsoft.EntityFrameworkCore/10.0.8": {
         "type": "package",
@@ -614,6 +618,26 @@
     }
   },
   "libraries": {
+    "Aspire.Keycloak.Authentication/13.3.5-preview.1.26270.6": {
+      "sha512": "lHkumvPvSHU8y+opTe3txVngsxpEWrovwVKhGnuYlGxeT0CpXEqUyayGWbNTnKXnuMgYUJmxCleFyoyKDBhZCg==",
+      "type": "package",
+      "path": "aspire.keycloak.authentication/13.3.5-preview.1.26270.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "README.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "aspire.keycloak.authentication.13.3.5-preview.1.26270.6.nupkg.sha512",
+        "aspire.keycloak.authentication.nuspec",
+        "lib/net10.0/Aspire.Keycloak.Authentication.dll",
+        "lib/net10.0/Aspire.Keycloak.Authentication.xml",
+        "lib/net8.0/Aspire.Keycloak.Authentication.dll",
+        "lib/net8.0/Aspire.Keycloak.Authentication.xml",
+        "lib/net9.0/Aspire.Keycloak.Authentication.dll",
+        "lib/net9.0/Aspire.Keycloak.Authentication.xml"
+      ]
+    },
     "Microsoft.AspNetCore.App.Internal.Assets/10.0.8": {
       "sha512": "v6KocthydFtUHBIRI29YsOHKOgsqcQubkNywVOxiYr4GSDSv+XO/AeyMJywlX+1tGUTGdydu/X7V+Tzeq4SsoA==",
       "type": "package",
@@ -667,21 +691,6 @@
         "lib/net10.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.xml",
         "microsoft.aspnetcore.authentication.openidconnect.10.0.8.nupkg.sha512",
         "microsoft.aspnetcore.authentication.openidconnect.nuspec"
-      ]
-    },
-    "Microsoft.AspNetCore.Components.Authorization/10.0.8": {
-      "sha512": "DHCCXl72lcYtFAADaCoNu3wAfyr6KsSX31zAV8Y70VSPme6c2dS2YBu2OaZtH9bpfuEXiGeulL92s7AtxfanBg==",
-      "type": "package",
-      "path": "microsoft.aspnetcore.components.authorization/10.0.8",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "THIRD-PARTY-NOTICES.txt",
-        "lib/net10.0/Microsoft.AspNetCore.Components.Authorization.dll",
-        "lib/net10.0/Microsoft.AspNetCore.Components.Authorization.xml",
-        "microsoft.aspnetcore.components.authorization.10.0.8.nupkg.sha512",
-        "microsoft.aspnetcore.components.authorization.nuspec"
       ]
     },
     "Microsoft.EntityFrameworkCore/10.0.8": {
@@ -1480,9 +1489,9 @@
   },
   "projectFileDependencyGroups": {
     "net10.0": [
+      "Aspire.Keycloak.Authentication >= 13.3.5-preview.1.26270.6",
       "Microsoft.AspNetCore.App.Internal.Assets >= 10.0.8",
       "Microsoft.AspNetCore.Authentication.OpenIdConnect >= 10.0.*",
-      "Microsoft.AspNetCore.Components.Authorization >= 10.0.*",
       "UTB.Minute.Contracts >= 1.0.0",
       "UTB.Minute.ServiceDefaults >= 1.0.0"
     ]
@@ -1547,6 +1556,10 @@
         "framework": "net10.0",
         "targetAlias": "net10.0",
         "dependencies": {
+          "Aspire.Keycloak.Authentication": {
+            "target": "Package",
+            "version": "[13.3.5-preview.1.26270.6, )"
+          },
           "Microsoft.AspNetCore.App.Internal.Assets": {
             "suppressParent": "All",
             "target": "Package",
@@ -1554,10 +1567,6 @@
             "autoReferenced": true
           },
           "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
-            "target": "Package",
-            "version": "[10.0.*, )"
-          },
-          "Microsoft.AspNetCore.Components.Authorization": {
             "target": "Package",
             "version": "[10.0.*, )"
           }
@@ -1998,17 +2007,5 @@
         }
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1510",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "PackageReference Microsoft.AspNetCore.Components.Authorization se nevyřadí. Zvažte odebrání tohoto balíčku ze závislostí, protože je pravděpodobně nepotřebný.",
-      "libraryId": "Microsoft.AspNetCore.Components.Authorization",
-      "targetGraphs": [
-        "net10.0"
-      ]
-    }
-  ]
+  }
 }

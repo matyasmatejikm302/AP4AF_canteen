@@ -1,13 +1,14 @@
-using UTB.Minute.Web.Components;
 using Aspire.Keycloak.Authentication;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.AspNetCore.Components.Authorization;
-using UTB.Minute.Contracts;
-using UTB.Minute.Web.Client.Pages;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.Security.Claims;
+using UTB.Minute.Contracts;
+using UTB.Minute.Web;
+using UTB.Minute.Web.Client.Pages;
+using UTB.Minute.Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,17 +24,17 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddHttpForwarder();
 
-// --- 2. DYNAMICKÉ NASTAVENÍ PRO REALM UTB ---
+// --- 2. DYNAMICKÉ NASTAVENÍ PRO REALM CANTEEN ---
 var keycloakBaseUrl = builder.Configuration["services:keycloak:https:0"]
                    ?? builder.Configuration["services:keycloak:http:0"]
                    ?? "http://keycloak";
 
-var keycloakRealm = "UTB";
-var keycloakClientId = "canteen-web";
-var keycloakClientSecret = "28gmH9XPxhhBRMRyIcthhq6f7kcCieA1";
+var keycloakRealm = "Canteen";
+var keycloakClientId = "canteen-client";
+//var keycloakClientSecret = "qP9SkJimrAgh2l31VTy7Xgh3O7Jv4X1B";
 var keycloakAuthority = $"{keycloakBaseUrl}/realms/{keycloakRealm}";
 
-// --- 3. OpenID Connect (Keycloak) konfigurace ---
+// --- 3. OpenID Connect (Keycloak) konfigurace s mapováním rolí ---
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -46,7 +47,7 @@ builder.Services.AddAuthentication(options =>
         options =>
         {
             options.ClientId = keycloakClientId;
-            options.ClientSecret = keycloakClientSecret;
+            //options.ClientSecret = keycloakClientSecret;
             options.Authority = keycloakAuthority;
             options.ResponseType = OpenIdConnectResponseType.Code;
             options.Scope.Clear();
@@ -65,7 +66,7 @@ builder.Services.AddAuthentication(options =>
 
             options.TokenValidationParameters.NameClaimType = "preferred_username";
 
-            // Mapování rolí z Keycloaku na C# Claims
+            // Mapování vnořených rolí z Keycloaku na C# Claims
             options.Events = new OpenIdConnectEvents
             {
                 OnTokenValidated = context =>
@@ -104,6 +105,9 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddAuthorization();
 builder.Services.AddCascadingAuthenticationState();
 
+// Registrace našeho serverového provideru, který serializuje stav a předává ho do klientského WebAssembly
+builder.Services.AddScoped<AuthenticationStateProvider, PersistingServerAuthenticationStateProvider>();
+
 // HttpClient konfigurace
 var apiAddress = builder.Configuration["services:webapi:http:0"]
               ?? builder.Configuration["services:webapi:https:0"]
@@ -118,6 +122,8 @@ builder.Services.AddHttpClient("webapi", client =>
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("webapi"));
 
 var app = builder.Build();
+
+app.MapStaticAssets();
 
 app.MapDefaultEndpoints();
 
@@ -153,22 +159,19 @@ app.MapGet("/logout", async (HttpContext ctx) =>
     await ctx.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
 });
 
-// --- 5. ČISTÝ C# BFF PROXY ---
-// Proxy pro Menu (GET)
+// --- 5. ČISTÝ C# BFF PROXY PRO WEBASSEMBLY KLIENTA ---
 app.MapGet("/menu", async (HttpClient client) =>
 {
     var result = await client.GetFromJsonAsync<MenuItemDto[]>("/menu");
     return Results.Ok(result);
 });
 
-// PŘIDÁNO: Proxy pro čtení seznamu všech objednávek (GET)
 app.MapGet("/orders", async (HttpClient client) =>
 {
     var result = await client.GetFromJsonAsync<OrderDto[]>("/orders");
     return Results.Ok(result);
 });
 
-// Proxy pro Objednávky (POST)
 app.MapPost("/orders", async (CreateOrderDto req, HttpClient client) =>
 {
     var response = await client.PostAsJsonAsync("/orders", req);
@@ -180,7 +183,6 @@ app.MapPost("/orders", async (CreateOrderDto req, HttpClient client) =>
     return Results.BadRequest(await response.Content.ReadAsStringAsync());
 });
 
-// PŘIDÁNO: Proxy pro změnu stavu objednávky kuchařem (PATCH)
 app.MapPatch("/orders/{id:guid}/state", async (Guid id, ChangeOrderStateDto req, HttpClient client) =>
 {
     var response = await client.PatchAsJsonAsync($"/orders/{id}/state", req);
@@ -191,7 +193,6 @@ app.MapPatch("/orders/{id:guid}/state", async (Guid id, ChangeOrderStateDto req,
     return Results.BadRequest();
 });
 
-// Proxy pro real-time SSE stream (GET)
 app.MapGet("/orders/sse", async (HttpContext context, HttpClient client, CancellationToken ct) =>
 {
     context.Response.Headers.Append("Content-Type", "text/event-stream");

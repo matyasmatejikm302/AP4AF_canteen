@@ -1,12 +1,14 @@
 ﻿@inherits LayoutComponentBase
 
 <div class="page">
+    <!-- TENTO BLOK SE STARÁ O ZOBRAZENÍ POSTANNÍHO PANELU S MENU -->
     <div class="sidebar">
         <NavMenu />
     </div>
 
     <main>
         <div class="top-row px-4">
+            <!-- Sem můžete umístit přihlašovací stav nebo odkazy -->
             <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
         </div>
 
@@ -14,10 +16,4 @@
             @Body
         </article>
     </main>
-</div>
-
-<div id="blazor-error-ui" data-nosnippet>
-    An unhandled error has occurred.
-    <a href="." class="reload">Reload</a>
-    <span class="dismiss">🗙</span>
 </div>

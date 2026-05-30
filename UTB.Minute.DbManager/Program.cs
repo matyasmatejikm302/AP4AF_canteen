@@ -35,7 +35,7 @@ app.MapPost("/dev/seed", async (AppDbContext db) =>
     );
 
     await db.SaveChangesAsync();
-    return Results.NoContent();
+    return TypedResults.NoContent();
 });
 
 app.Run();

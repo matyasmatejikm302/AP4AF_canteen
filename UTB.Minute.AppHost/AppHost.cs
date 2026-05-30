@@ -10,8 +10,9 @@ var postgres = builder.AddPostgres("postgres")
 
 var database = postgres.AddDatabase("CanteenDb");
 
-// 2. Spuštění Keycloaku
+// 2. Spuštění Keycloaku s automatickým importem
 var keycloak = builder.AddKeycloak("keycloak")
+                      .WithRealmImport("realm.json")
                       .WithDataVolume()
                       .WithLifetime(ContainerLifetime.Persistent);
 
@@ -21,18 +22,24 @@ builder.AddProject<UTB_Minute_DbManager>("dbmanager")
        .WithHttpCommand("/dev/seed", "Restart Database")
        .WaitFor(database);
 
-// 4. WebApi - předáme referenci na Keycloak a počkáme, až bude zdravý
+// 4. WebApi
 var webapi = builder.AddProject<Projects.UTB_Minute_WebApi>("webapi")
                     .WithReference(database)
                     .WithReference(keycloak)
                     .WaitFor(database)
-                    .WaitFor(keycloak); // <--- ČEKÁME NA KEYCLOAK
+                    .WaitFor(keycloak);
 
-// 5. Web Frontend - předáme referenci na WebApi, Keycloak a počkáme na oba
+// 5. Web Frontend
 builder.AddProject<Projects.UTB_Minute_Web>("web")
        .WithReference(webapi)
        .WithReference(keycloak)
        .WaitFor(webapi)
-       .WaitFor(keycloak); // <--- ČEKÁME NA KEYCLOAK
+       .WaitFor(keycloak);
 
 builder.Build().Run();
+
+// Definice jmenného prostoru pro obchvat source generátoru v testech
+namespace UTB.Minute.AppHost
+{
+    public partial class Program { }
+}

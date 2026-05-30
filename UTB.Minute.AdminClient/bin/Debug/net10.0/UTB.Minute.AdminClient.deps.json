@@ -8,12 +8,25 @@
     ".NETCoreApp,Version=v10.0": {
       "UTB.Minute.AdminClient/1.0.0": {
         "dependencies": {
+          "Aspire.Keycloak.Authentication": "13.3.5-preview.1.26270.6",
           "Microsoft.AspNetCore.Authentication.OpenIdConnect": "10.0.8",
           "UTB.Minute.Contracts": "1.0.0",
           "UTB.Minute.ServiceDefaults": "1.0.0"
         },
         "runtime": {
           "UTB.Minute.AdminClient.dll": {}
+        }
+      },
+      "Aspire.Keycloak.Authentication/13.3.5-preview.1.26270.6": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.8",
+          "Microsoft.AspNetCore.Authentication.OpenIdConnect": "10.0.8"
+        },
+        "runtime": {
+          "lib/net10.0/Aspire.Keycloak.Authentication.dll": {
+            "assemblyVersion": "13.3.5.0",
+            "fileVersion": "13.300.526.27006"
+          }
         }
       },
       "Microsoft.AspNetCore.Authentication.JwtBearer/10.0.8": {
@@ -396,6 +409,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Aspire.Keycloak.Authentication/13.3.5-preview.1.26270.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lHkumvPvSHU8y+opTe3txVngsxpEWrovwVKhGnuYlGxeT0CpXEqUyayGWbNTnKXnuMgYUJmxCleFyoyKDBhZCg==",
+      "path": "aspire.keycloak.authentication/13.3.5-preview.1.26270.6",
+      "hashPath": "aspire.keycloak.authentication.13.3.5-preview.1.26270.6.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication.JwtBearer/10.0.8": {
       "type": "package",

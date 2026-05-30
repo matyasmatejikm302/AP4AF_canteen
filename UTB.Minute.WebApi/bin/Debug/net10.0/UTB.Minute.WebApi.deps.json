@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v10.0": {
       "UTB.Minute.WebApi/1.0.0": {
         "dependencies": {
-          "Aspire.Npgsql.EntityFrameworkCore.PostgreSQL": "13.0.1",
+          "Aspire.Npgsql.EntityFrameworkCore.PostgreSQL": "13.3.5",
           "UTB.Minute.Contracts": "1.0.0",
           "UTB.Minute.Db": "1.0.0",
           "UTB.Minute.ServiceDefaults": "1.0.0"
@@ -17,18 +17,18 @@
           "UTB.Minute.WebApi.dll": {}
         }
       },
-      "Aspire.Npgsql.EntityFrameworkCore.PostgreSQL/13.0.1": {
+      "Aspire.Npgsql.EntityFrameworkCore.PostgreSQL/13.3.5": {
         "dependencies": {
-          "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": "10.0.0",
-          "Npgsql.DependencyInjection": "10.0.0",
+          "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": "10.0.7",
+          "Npgsql.DependencyInjection": "10.0.1",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.0",
-          "Npgsql.OpenTelemetry": "10.0.0",
+          "Npgsql.OpenTelemetry": "10.0.1",
           "OpenTelemetry.Extensions.Hosting": "1.15.3"
         },
         "runtime": {
           "lib/net10.0/Aspire.Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
-            "assemblyVersion": "13.0.1.0",
-            "fileVersion": "13.0.125.57503"
+            "assemblyVersion": "13.3.5.0",
+            "fileVersion": "13.300.526.27006"
           }
         }
       },
@@ -62,14 +62,14 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Relational/10.0.0": {
+      "Microsoft.EntityFrameworkCore.Relational/10.0.7": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "10.0.8"
         },
         "runtime": {
           "lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll": {
-            "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.25.52411"
+            "assemblyVersion": "10.0.7.0",
+            "fileVersion": "10.0.726.21808"
           }
         }
       },
@@ -105,14 +105,14 @@
           }
         }
       },
-      "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore/10.0.0": {
+      "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore/10.0.7": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "10.0.0"
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.7"
         },
         "runtime": {
           "lib/net10.0/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore.dll": {
-            "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.25.52411"
+            "assemblyVersion": "10.0.7.0",
+            "fileVersion": "10.0.726.21808"
           }
         }
       },
@@ -260,30 +260,30 @@
           }
         }
       },
-      "Npgsql/10.0.0": {
+      "Npgsql/10.0.1": {
         "runtime": {
           "lib/net10.0/Npgsql.dll": {
-            "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.0.0"
+            "assemblyVersion": "10.0.1.0",
+            "fileVersion": "10.0.1.0"
           }
         }
       },
-      "Npgsql.DependencyInjection/10.0.0": {
+      "Npgsql.DependencyInjection/10.0.1": {
         "dependencies": {
-          "Npgsql": "10.0.0"
+          "Npgsql": "10.0.1"
         },
         "runtime": {
           "lib/net8.0/Npgsql.DependencyInjection.dll": {
-            "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.0.0"
+            "assemblyVersion": "10.0.1.0",
+            "fileVersion": "10.0.1.0"
           }
         }
       },
       "Npgsql.EntityFrameworkCore.PostgreSQL/10.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "10.0.8",
-          "Microsoft.EntityFrameworkCore.Relational": "10.0.0",
-          "Npgsql": "10.0.0"
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.7",
+          "Npgsql": "10.0.1"
         },
         "runtime": {
           "lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
@@ -292,15 +292,15 @@
           }
         }
       },
-      "Npgsql.OpenTelemetry/10.0.0": {
+      "Npgsql.OpenTelemetry/10.0.1": {
         "dependencies": {
-          "Npgsql": "10.0.0",
+          "Npgsql": "10.0.1",
           "OpenTelemetry.Api": "1.15.3"
         },
         "runtime": {
           "lib/net8.0/Npgsql.OpenTelemetry.dll": {
-            "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.0.0"
+            "assemblyVersion": "10.0.1.0",
+            "fileVersion": "10.0.1.0"
           }
         }
       },
@@ -479,12 +479,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Aspire.Npgsql.EntityFrameworkCore.PostgreSQL/13.0.1": {
+    "Aspire.Npgsql.EntityFrameworkCore.PostgreSQL/13.3.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ad06RYO2VKh/4NOjPqR1YkL3dhG4tILNUmX9F0V1oG0xlCPbCjBqSx8Ki2WfxGINbTSvu/LesXcUkW+O7S6Q2Q==",
-      "path": "aspire.npgsql.entityframeworkcore.postgresql/13.0.1",
-      "hashPath": "aspire.npgsql.entityframeworkcore.postgresql.13.0.1.nupkg.sha512"
+      "sha512": "sha512-VDg0Gkud8sgKqeRUMUhIHYIk8Wpgpm71McpwRspFiT2XAWSodl/NpLMaG+rivQl1cKIE2QVTjgVYLqYdEArYzQ==",
+      "path": "aspire.npgsql.entityframeworkcore.postgresql/13.3.5",
+      "hashPath": "aspire.npgsql.entityframeworkcore.postgresql.13.3.5.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication.JwtBearer/10.0.8": {
       "type": "package",
@@ -507,12 +507,12 @@
       "path": "microsoft.entityframeworkcore.abstractions/10.0.8",
       "hashPath": "microsoft.entityframeworkcore.abstractions.10.0.8.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Relational/10.0.0": {
+    "Microsoft.EntityFrameworkCore.Relational/10.0.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-A3MX1ee7RDxWCUdx/KqP+74fbksz0UIhkVZh56YHvbPkEKsffCXgHU3LGkRDwqR/MrBNWLCWC/IVX79tzM30ZA==",
-      "path": "microsoft.entityframeworkcore.relational/10.0.0",
-      "hashPath": "microsoft.entityframeworkcore.relational.10.0.0.nupkg.sha512"
+      "sha512": "sha512-midwPufIwXhOJcVhaZpCZGNbjy2QoPfHI+70nw2dGcoULEW9DybMvMPYkRjOJV0eI46a1oVFhU4lFYDEx6YUbg==",
+      "path": "microsoft.entityframeworkcore.relational/10.0.7",
+      "hashPath": "microsoft.entityframeworkcore.relational.10.0.7.nupkg.sha512"
     },
     "Microsoft.Extensions.AmbientMetadata.Application/10.6.0": {
       "type": "package",
@@ -542,12 +542,12 @@
       "path": "microsoft.extensions.diagnostics.exceptionsummarization/10.6.0",
       "hashPath": "microsoft.extensions.diagnostics.exceptionsummarization.10.6.0.nupkg.sha512"
     },
-    "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore/10.0.0": {
+    "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore/10.0.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ND74bTLuvcrhpEPQU8QZwOrq08zPPj76Ev/60SX1juVKLSSnbknXNoOzNYMPJn3xvhyDHmqU3Hvb/aYV3uvvhQ==",
-      "path": "microsoft.extensions.diagnostics.healthchecks.entityframeworkcore/10.0.0",
-      "hashPath": "microsoft.extensions.diagnostics.healthchecks.entityframeworkcore.10.0.0.nupkg.sha512"
+      "sha512": "sha512-jB9/rxTI0c1n7ynagvyJCLVcY1yA47Ngu8Ef9YBEDQ/3O/fNTgGMRd9aRK9tthtMZ40W9P7ih8423ePsyZc/2g==",
+      "path": "microsoft.extensions.diagnostics.healthchecks.entityframeworkcore/10.0.7",
+      "hashPath": "microsoft.extensions.diagnostics.healthchecks.entityframeworkcore.10.0.7.nupkg.sha512"
     },
     "Microsoft.Extensions.Http.Diagnostics/10.6.0": {
       "type": "package",
@@ -640,19 +640,19 @@
       "path": "microsoft.identitymodel.tokens/8.0.1",
       "hashPath": "microsoft.identitymodel.tokens.8.0.1.nupkg.sha512"
     },
-    "Npgsql/10.0.0": {
+    "Npgsql/10.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-xZAYhPOU2rUIFpV48xsqhCx9vXs6Y+0jX2LCoSEfDFYMw9jtAOUk3iQsCnDLrFIv9NT3JGMihn7nnuZsPKqJmA==",
-      "path": "npgsql/10.0.0",
-      "hashPath": "npgsql.10.0.0.nupkg.sha512"
+      "sha512": "sha512-XyUcxEfqlFomhNTG/ZdGlec+uSOQArKz0Mzz8jYKP/Jj9GM2YabU5CVZtp0yiC4f9hRp+tRZTnHMatJeJ3rwgw==",
+      "path": "npgsql/10.0.1",
+      "hashPath": "npgsql.10.0.1.nupkg.sha512"
     },
-    "Npgsql.DependencyInjection/10.0.0": {
+    "Npgsql.DependencyInjection/10.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-htuxMDQ7nHgadPxoO6XXVvSgYcVierLrhzOoamyUchvC4oHnYdD05zZ0dYsq80DN0vco9t/Vp+ZxYvnfJxbhIg==",
-      "path": "npgsql.dependencyinjection/10.0.0",
-      "hashPath": "npgsql.dependencyinjection.10.0.0.nupkg.sha512"
+      "sha512": "sha512-YHFa4vD27sNIfv6s5q8Zi1fLvKfmK1xcpMv0PUvXOxDFbRmuMRSHwpZTbPvsAlj97q1/o7DfyynLqfqrCm1VnA==",
+      "path": "npgsql.dependencyinjection/10.0.1",
+      "hashPath": "npgsql.dependencyinjection.10.0.1.nupkg.sha512"
     },
     "Npgsql.EntityFrameworkCore.PostgreSQL/10.0.0": {
       "type": "package",
@@ -661,12 +661,12 @@
       "path": "npgsql.entityframeworkcore.postgresql/10.0.0",
       "hashPath": "npgsql.entityframeworkcore.postgresql.10.0.0.nupkg.sha512"
     },
-    "Npgsql.OpenTelemetry/10.0.0": {
+    "Npgsql.OpenTelemetry/10.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-eftmCZWng874x4iSfQyfF+PpnfA6hloHGQ3EzELVhRyPOEHcMygxSXhx4KI8HKu/Qg8uK1MF5tcwOVhwL7duJw==",
-      "path": "npgsql.opentelemetry/10.0.0",
-      "hashPath": "npgsql.opentelemetry.10.0.0.nupkg.sha512"
+      "sha512": "sha512-G9fEIBaHggZXWfDSDnKLc0XwKcbuU6i2eXp7zDqpgYxbhCmIN9fRgaSOGyyMNHSo/yY1IB4G4CjW5VO/SKRR0g==",
+      "path": "npgsql.opentelemetry/10.0.1",
+      "hashPath": "npgsql.opentelemetry.10.0.1.nupkg.sha512"
     },
     "OpenTelemetry/1.15.3": {
       "type": "package",
