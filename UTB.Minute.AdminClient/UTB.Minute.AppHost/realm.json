@@ -1,0 +1,90 @@
+{
+  "id": "Canteen",
+  "realm": "Canteen",
+  "enabled": true,
+  "roles": {
+    "realm": [
+      {
+        "name": "canteen-cook",
+        "description": "Role kucharka - sprava objednavek"
+      },
+      {
+        "name": "canteen-manager",
+        "description": "Role vedouci menzy - sprava jidel"
+      },
+      {
+        "name": "canteen-student",
+        "description": "Role student"
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "canteen-client",
+      "enabled": true,
+      "publicClient": true,
+      "redirectUris": [
+        "*"
+      ],
+      "webOrigins": [
+        "*"
+      ],
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true
+    }
+  ],
+  "users": [
+    {
+      "username": "cook",
+      "enabled": true,
+      "email": "kucharka@utb.cz",
+      "firstName": "Marie",
+      "lastName": "Kucharova",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "canteen-cook"
+      ]
+    },
+    {
+      "username": "manager",
+      "enabled": true,
+      "email": "vedeni@utb.cz",
+      "firstName": "Jan",
+      "lastName": "Vedouci",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "canteen-manager"
+      ]
+    },
+    {
+      "username": "student",
+      "enabled": true,
+      "email": "student@utb.cz",
+      "firstName": "Tomas",
+      "lastName": "Marny",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "canteen-student"
+      ]
+    }
+  ]
+}

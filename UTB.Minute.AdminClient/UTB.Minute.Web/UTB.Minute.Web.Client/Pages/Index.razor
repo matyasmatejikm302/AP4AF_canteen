@@ -1,0 +1,66 @@
+@page "/"
+@using Microsoft.AspNetCore.Components.Authorization
+@inject NavigationManager Navigation
+
+<PageTitle>Vítejte - Přihlášení</PageTitle>
+
+<AuthorizeView>
+    <Authorized>
+        <!-- Pokud je uživatel přihlášený, OnParametersSetAsync se postará o okamžité přesměrování -->
+        <div class="container text-center py-5 d-flex flex-column align-items-center justify-content-center" style="min-height: 70vh;">
+            <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                <span class="visually-hidden">Přesměrovávání...</span>
+            </div>
+            <p class="mt-3 text-secondary fw-semibold">Přesměrovávání do vašeho rozhraní...</p>
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <!-- Pokud uživatel není přihlášený, zobrazíme čisté Keycloak přihlášení (bez demo prvků) -->
+        <div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+            <div class="card shadow-lg p-5 text-center border-0 rounded-4" style="max-width: 450px; width: 100%; background: #ffffff;">
+                <div class="mb-4">
+                    <!-- Ikona zámku v barvách UTB -->
+                    <i class="bi bi-shield-lock-fill text-primary" style="font-size: 4rem;"></i>
+                </div>
+                <h2 class="fw-bold text-dark mb-2">Přihlášení</h2>
+                <p class="text-secondary small mb-4">
+                    Vítejte v systému Jídelna UTB. Pro pokračování se prosím přihlaste přes svůj účet.
+                </p>
+
+                <!-- Tlačítko přihlášení (směruje na serverový login endpoint) -->
+                <a class="btn btn-primary btn-lg rounded-pill w-100 py-2 shadow-sm fw-bold" href="login" style="font-size: 1rem;">
+                    <i class="bi bi-box-arrow-in-right me-2"></i> Přihlásit se přes Keycloak
+                </a>
+            </div>
+        </div>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    [CascadingParameter]
+    private Task<AuthenticationState>? AuthStateTask { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (AuthStateTask != null)
+        {
+            var authState = await AuthStateTask;
+            var user = authState.User;
+
+            // Pokud je uživatel úspěšně ověřen
+            if (user.Identity?.IsAuthenticated == true)
+            {
+                // Pokud má roli kuchařky, přesměrujeme ho rovnou do kuchyně
+                if (user.IsInRole("canteen-cook"))
+                {
+                    Navigation.NavigateTo("kitchen");
+                }
+                else
+                {
+                    // Všichni ostatní uživatelé (studenti / strávníci) jdou do jídelny
+                    Navigation.NavigateTo("canteen");
+                }
+            }
+        }
+    }
+}

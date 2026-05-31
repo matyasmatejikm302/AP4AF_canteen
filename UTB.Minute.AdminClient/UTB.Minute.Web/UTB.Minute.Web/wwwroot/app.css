@@ -1,0 +1,71 @@
+/* --- MODERNÍ STYLIZACE PRO JÍDELNU UTB --- */
+
+/* Vzhled a interakce karet jídel */
+.meal-card {
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0, 0, 0, 0.06) !important;
+    border-radius: 16px !important;
+    background-color: #ffffff;
+}
+
+    /* Jemné povysunutí karty a stín při najetí myší */
+    .meal-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08) !important;
+    }
+
+/* Vzhled tlačítka pro objednání */
+.btn-order {
+    border-radius: 20px !important;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.8px;
+    padding: 8px 24px;
+    transition: all 0.2s ease;
+}
+
+    .btn-order:hover:not(:disabled) {
+        transform: scale(1.03);
+    }
+
+/* Skladové dostupnosti - štítky */
+.stock-badge-high {
+    background-color: #e8f5e9 !important; /* Jemně zelená */
+    color: #2e7d32 !important;
+    font-weight: 600;
+    font-size: 0.8rem;
+    border: 1px solid rgba(46, 125, 50, 0.1);
+}
+
+.stock-badge-low {
+    background-color: #ffebee !important; /* Jemně červená */
+    color: #c62828 !important;
+    font-weight: 600;
+    font-size: 0.8rem;
+    border: 1px solid rgba(198, 40, 40, 0.1);
+}
+
+/* Tabulka objednávek */
+.table th {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.8px;
+    color: #6c757d;
+}
+
+.table tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+    .table tbody tr:hover {
+        background-color: rgba(0, 0, 0, 0.015);
+    }
+
+/* Custom zaoblené odznáčky stavu v tabulce */
+.table .badge {
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.3px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}

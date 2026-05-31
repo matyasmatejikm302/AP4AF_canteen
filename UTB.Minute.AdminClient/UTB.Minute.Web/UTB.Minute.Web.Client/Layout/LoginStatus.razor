@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@inject NavigationManager Navigation
+
+<AuthorizeView>
+    <Authorized>
+        <div class="d-flex align-items-center gap-3 bg-light border rounded-pill px-3 py-1 shadow-sm">
+            <span class="text-secondary small">
+                Přihlášen: <strong class="text-dark">@context.User.Identity?.Name</strong>
+            </span>
+            <button class="btn btn-sm btn-outline-danger rounded-pill px-3 py-0" @onclick="LogOut" style="font-size: 0.8rem; height: 24px; line-height: 20px;">
+                Odhlásit se
+            </button>
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <div class="d-flex align-items-center">
+            <a class="btn btn-sm btn-primary rounded-pill px-4 shadow-sm py-1 font-weight-bold" href="login">
+                <i class="bi bi-box-arrow-in-right me-1"></i> Přihlásit se (OIDC)
+            </a>
+        </div>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private void LogOut()
+    {
+        // Vynutíme plné načtení stránky (forceLoad: true),
+        // aby požadavek odešel na serverový endpoint v Program.cs
+        Navigation.NavigateTo("logout", forceLoad: true);
+    }
+}

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)xunit.core\2.9.3\build\xunit.core.targets" Condition="Exists('$(NuGetPackageRoot)xunit.core\2.9.3\build\xunit.core.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.extensions.telemetry.abstractions\10.6.0\buildTransitive\net8.0\Microsoft.Extensions.Telemetry.Abstractions.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.telemetry.abstractions\10.6.0\buildTransitive\net8.0\Microsoft.Extensions.Telemetry.Abstractions.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.extensions.http.resilience\10.6.0\buildTransitive\net8.0\Microsoft.Extensions.Http.Resilience.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.http.resilience\10.6.0\buildTransitive\net8.0\Microsoft.Extensions.Http.Resilience.targets')" />
+    <Import Project="$(NuGetPackageRoot)aspire.npgsql.entityframeworkcore.postgresql\13.3.5\buildTransitive\net10.0\Aspire.Npgsql.EntityFrameworkCore.PostgreSQL.targets" Condition="Exists('$(NuGetPackageRoot)aspire.npgsql.entityframeworkcore.postgresql\13.3.5\buildTransitive\net10.0\Aspire.Npgsql.EntityFrameworkCore.PostgreSQL.targets')" />
+    <Import Project="$(NuGetPackageRoot)aspire.hosting\13.3.5\buildTransitive\net8.0\Aspire.Hosting.targets" Condition="Exists('$(NuGetPackageRoot)aspire.hosting\13.3.5\buildTransitive\net8.0\Aspire.Hosting.targets')" />
+    <Import Project="$(NuGetPackageRoot)aspire.hosting.orchestration.win-x64\13.3.5\buildTransitive\Aspire.Hosting.Orchestration.win-x64.targets" Condition="Exists('$(NuGetPackageRoot)aspire.hosting.orchestration.win-x64\13.3.5\buildTransitive\Aspire.Hosting.Orchestration.win-x64.targets')" />
+    <Import Project="$(NuGetPackageRoot)aspire.dashboard.sdk.win-x64\13.3.5\buildTransitive\Aspire.Dashboard.Sdk.win-x64.targets" Condition="Exists('$(NuGetPackageRoot)aspire.dashboard.sdk.win-x64\13.3.5\buildTransitive\Aspire.Dashboard.Sdk.win-x64.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.testplatform.testhost\18.6.0\build\net8.0\Microsoft.TestPlatform.TestHost.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.testplatform.testhost\18.6.0\build\net8.0\Microsoft.TestPlatform.TestHost.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.codecoverage\18.6.0\build\netstandard2.0\Microsoft.CodeCoverage.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.codecoverage\18.6.0\build\netstandard2.0\Microsoft.CodeCoverage.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.net.test.sdk\18.6.0\build\net8.0\Microsoft.NET.Test.Sdk.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.net.test.sdk\18.6.0\build\net8.0\Microsoft.NET.Test.Sdk.targets')" />
+  </ImportGroup>
+</Project>
